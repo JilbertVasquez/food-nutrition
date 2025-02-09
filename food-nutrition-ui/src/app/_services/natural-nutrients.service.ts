@@ -7,7 +7,7 @@ import { lastValueFrom } from 'rxjs';
     providedIn: 'root',
 })
 export class NaturalNutrientsService {
-    private _nutritionixBaseUrl = environment.nutritionixBaseUrl + 'natural/nutrients';
+    private _nutritionixBaseUrl = environment.nutritionixBaseUrl + '/natural/nutrients';
     private _appId = environment.nutritionixAppId;
     private _appKey = environment.nutritionixAppKey;
 

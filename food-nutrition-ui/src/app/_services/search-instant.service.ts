@@ -7,7 +7,7 @@ import { lastValueFrom } from 'rxjs';
     providedIn: 'root',
 })
 export class SearchInstantService {
-    private _nutritionixBaseUrl = environment.nutritionixBaseUrl + 'search/instant';
+    private _nutritionixBaseUrl = environment.nutritionixBaseUrl + '/search/instant';
     private _appId = environment.nutritionixAppId;
     private _appKey = environment.nutritionixAppKey;
 

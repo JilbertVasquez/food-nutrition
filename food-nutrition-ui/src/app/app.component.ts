@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SearchInstantService } from './_services/search-instant.service';
 import { FoodItem } from './dtos/food-description-dto';
 import { NaturalNutrientsService } from './_services/natural-nutrients.service';
+import { ImaggaTagsService } from './_services/imagga-tags.service';
 
 @Component({
     selector: 'app-root',
@@ -16,8 +17,8 @@ export class AppComponent implements OnInit {
     foodItem: FoodItem[] | null = null;
     constructor(
         private _searchInstantService: SearchInstantService,
-        private _naturalNutrientsService: NaturalNutrientsService
-
+        private _naturalNutrientsService: NaturalNutrientsService,
+        private _imaggaTagsService: ImaggaTagsService
     ) { }
 
     async ngOnInit() {
@@ -32,5 +33,8 @@ export class AppComponent implements OnInit {
         });
 
         this.foodItem = response.foods;
+
+        // const imaggaResponse = await this._imaggaTagsService.getImaggaImageTags();
+        // console.log(imaggaResponse);
     }
 }
