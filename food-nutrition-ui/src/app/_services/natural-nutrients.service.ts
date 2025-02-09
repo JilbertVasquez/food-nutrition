@@ -7,7 +7,7 @@ import { lastValueFrom } from 'rxjs';
     providedIn: 'root',
 })
 export class NaturalNutrientsService {
-    private _baseUrl = environment.baseUrl + 'natural/nutrients';
+    private _nutritionixBaseUrl = environment.nutritionixBaseUrl + 'natural/nutrients';
     private _appId = environment.nutritionixAppId;
     private _appKey = environment.nutritionixAppKey;
 
@@ -22,7 +22,7 @@ export class NaturalNutrientsService {
 
         const body = { query };
 
-        const url = `${this._baseUrl}`;
+        const url = `${this._nutritionixBaseUrl}`;
         return lastValueFrom(this.http.post<any>(url, body, { headers }));
     }
 }

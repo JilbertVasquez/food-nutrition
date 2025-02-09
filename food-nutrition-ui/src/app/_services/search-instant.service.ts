@@ -7,7 +7,7 @@ import { lastValueFrom } from 'rxjs';
     providedIn: 'root',
 })
 export class SearchInstantService {
-    private _baseUrl = environment.baseUrl + 'search/instant';
+    private _nutritionixBaseUrl = environment.nutritionixBaseUrl + 'search/instant';
     private _appId = environment.nutritionixAppId;
     private _appKey = environment.nutritionixAppKey;
 
@@ -20,7 +20,7 @@ export class SearchInstantService {
             'Content-Type': 'application/json',
         });
 
-        const url = `${this._baseUrl}?query=${query}`;
+        const url = `${this._nutritionixBaseUrl}?query=${query}`;
         return lastValueFrom(this.http.get<any>(url, { headers }));
     }
 }
