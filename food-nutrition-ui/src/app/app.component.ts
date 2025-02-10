@@ -1,40 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { SearchInstantService } from './_services/search-instant.service';
-import { FoodItem } from './dtos/food-description-dto';
-import { NaturalNutrientsService } from './_services/natural-nutrients.service';
-import { ImaggaTagsService } from './_services/imagga-tags.service';
+import { Component } from '@angular/core';
+import { FoodNutritionContainerComponent } from './food-nutrition-container/food-nutrition-container.component';
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [],
+    imports: [FoodNutritionContainerComponent],
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
 })
-export class AppComponent implements OnInit {
-    title = 'food-nutrition-ui';
+export class AppComponent {
+    title = 'food-nutrition';
 
-    foodItem: FoodItem[] | null = null;
-    constructor(
-        private _searchInstantService: SearchInstantService,
-        private _naturalNutrientsService: NaturalNutrientsService,
-        private _imaggaTagsService: ImaggaTagsService
-    ) { }
 
-    async ngOnInit() {
-        // const response = await this._searchInstantService.searchInstant();
-        // response.common.forEach((food: any) => {
-        //     console.log(food);
-        // });
-
-        const response = await this._naturalNutrientsService.searchNaturalNutrients();
-        response.foods.forEach((food: any) => {
-            console.log(food);
-        });
-
-        this.foodItem = response.foods;
-
-        // const imaggaResponse = await this._imaggaTagsService.getImaggaImageTags();
-        // console.log(imaggaResponse);
-    }
 }

@@ -1,0 +1,12 @@
+<div class="w-full h-full">
+    @for (food of foodItem; track food) {
+        <h1>{{food.food_name}}</h1>
+        <!-- <h1>{{food.photo?.thumb}}</h1> -->
+
+        <img src={{food.photo?.thumb}} alt={{food.food_name}}>
+        <h1>{{food.serving_qty}}</h1>
+        <h1>{{food.serving_unit}}</h1>
+        <h1>{{food.nf_calories}}</h1>
+    }
+</div>
+

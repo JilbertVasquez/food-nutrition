@@ -1,11 +1,5 @@
-<h1 class="text-3xl font-bold underline">Hello world!</h1>
-
-@for (food of foodItem; track food) {
-    <h1>{{food.food_name}}</h1>
-    <!-- <h1>{{food.photo?.thumb}}</h1> -->
-
-    <img src={{food.photo?.thumb}} alt={{food.food_name}}>
-    <h1>{{food.serving_qty}}</h1>
-    <h1>{{food.serving_unit}}</h1>
-    <h1>{{food.nf_calories}}</h1>
-}
+<div class="w-full h-full">
+    <div class="w-full flex-1">
+        <app-food-nutrition-container></app-food-nutrition-container>
+    </div>
+</div>
