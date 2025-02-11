@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
@@ -8,18 +8,20 @@ import { lastValueFrom } from 'rxjs';
 })
 export class ImaggaTagsService {
     private _baseUrl = environment.imaggaBaseUrl;
-        private _imaggaToken = environment.imaggaToken;
+    private _imaggaToken = environment.imaggaToken;
 
-        constructor(private http: HttpClient) {}
+    imageSrc = signal<string | ArrayBuffer | null>(null);
 
-        getImaggaImageTags(image_url: string = 'https://www.jocooks.com/wp-content/uploads/2020/03/white-bread-1.jpg') {
-            const headers = new HttpHeaders({
-                'Authorization': this._imaggaToken,
-            });
+    constructor(private http: HttpClient) {}
 
-            const params = { image_url };
+    getImaggaImageTags(image_url: string = 'https://www.jocooks.com/wp-content/uploads/2020/03/white-bread-1.jpg') {
+        const headers = new HttpHeaders({
+            'Authorization': this._imaggaToken,
+        });
 
-            const url = `${this._baseUrl}`;
-            return lastValueFrom(this.http.get<any>(url, { headers, params }));
-        }
+        const params = { image_url };
+
+        const url = `${this._baseUrl}`;
+        return lastValueFrom(this.http.get<any>(url, { headers, params }));
+    }
 }

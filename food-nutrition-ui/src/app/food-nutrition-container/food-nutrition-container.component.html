@@ -1,6 +1,10 @@
 <div class="w-full h-full flex justify-center bg-green-100">
-    <div class="w-[92%] h-full p-5">
-        @for (food of foodItem; track food) {
+    <div class="w-[95%] h-full p-5">
+        <div>
+            <app-imagga-tagger></app-imagga-tagger>
+        </div>
+        <div>
+            @for (food of foodItem; track food) {
                 <h1>{{food.food_name}}</h1>
                 <!-- <h1>{{food.photo?.thumb}}</h1> -->
 
@@ -9,6 +13,8 @@
                 <button mat-button>{{food.serving_unit}}</button>
                 <button mat-button>{{food.nf_calories}}</button>
             }
+        </div>
+
     </div>
 
 </div>
