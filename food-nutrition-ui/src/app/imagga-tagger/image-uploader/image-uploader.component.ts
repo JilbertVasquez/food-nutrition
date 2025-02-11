@@ -22,6 +22,7 @@ export class ImageUploaderComponent {
             const reader = new FileReader();
             reader.onload = () => {
                 this.imageSrc.set(reader.result);
+                this._imaggaTagsService.setImage(this.imageSrc());
             };
             reader.readAsDataURL(file);
         }

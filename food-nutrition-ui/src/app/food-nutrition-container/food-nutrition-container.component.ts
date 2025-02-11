@@ -27,12 +27,12 @@ export class FoodNutritionContainerComponent implements OnInit {
         //     console.log(food);
         // });
 
-        const response = await this._naturalNutrientsService.searchNaturalNutrients();
-        response.foods.forEach((food: any) => {
-            console.log(food);
-        });
+        // const response = await this._naturalNutrientsService.searchNaturalNutrients();
+        // response.foods.forEach((food: any) => {
+        //     console.log(food);
+        // });
 
-        this.foodItem = response.foods;
+        // this.foodItem = response.foods;
 
         // const imaggaResponse = await this._imaggaTagsService.getImaggaImageTags();
         // console.log(imaggaResponse);
