@@ -1,12 +1,15 @@
-<div class="w-full h-full">
-    @for (food of foodItem; track food) {
-        <h1>{{food.food_name}}</h1>
-        <!-- <h1>{{food.photo?.thumb}}</h1> -->
+<div class="w-full h-full flex justify-center bg-green-100">
+    <div class="w-[92%] h-full p-5">
+        @for (food of foodItem; track food) {
+                <h1>{{food.food_name}}</h1>
+                <!-- <h1>{{food.photo?.thumb}}</h1> -->
 
-        <img src={{food.photo?.thumb}} alt={{food.food_name}}>
-        <button mat-flat-button color="primary">{{food.serving_qty}}</button>
-        <button mat-button>{{food.serving_unit}}</button>
-        <button mat-button>{{food.nf_calories}}</button>
-    }
+                <img src={{food.photo?.thumb}} alt={{food.food_name}}>
+                <button mat-flat-button color="primary">{{food.serving_qty}}</button>
+                <button mat-button>{{food.serving_unit}}</button>
+                <button mat-button>{{food.nf_calories}}</button>
+            }
+    </div>
+
 </div>
 
