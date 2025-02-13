@@ -2,6 +2,7 @@ import { Injectable, signal } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
+import { ImaggaResponse, ImaggaTag } from '../dtos/imagga-response';
 
 @Injectable({
     providedIn: 'root',
@@ -11,6 +12,7 @@ export class ImaggaTagsService {
     private _imaggaToken = environment.imaggaToken;
 
     imageSrc = signal<string | ArrayBuffer | null>(null);
+    imageTags = signal<ImaggaTag[] | null>(null);
 
     constructor(private http: HttpClient) {}
 
@@ -41,6 +43,6 @@ export class ImaggaTagsService {
 
         const url = `${this._baseUrl}`;
         // return lastValueFrom(this.http.get<any>(url, { headers, params }));
-        return lastValueFrom(this.http.post<any>(url, formData, { headers }));
+        return lastValueFrom(this.http.post<ImaggaResponse>(url, formData, { headers }));
     }
 }
