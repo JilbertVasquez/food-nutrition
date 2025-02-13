@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SearchInstantService } from '../_services/search-instant.service';
 import { NaturalNutrientsService } from '../_services/natural-nutrients.service';
 import { ImaggaTagsService } from '../_services/imagga-tags.service';
-import { FoodItem } from '../dtos/food-description-dto';
+import { FoodNutritionDetails } from '../dtos/food-description-dto';
 import {MatButtonModule} from '@angular/material/button';
 import { ImaggaTaggerComponent } from '../imagga-tagger/imagga-tagger.component';
 
@@ -14,7 +14,7 @@ import { ImaggaTaggerComponent } from '../imagga-tagger/imagga-tagger.component'
     styleUrl: './food-nutrition-container.component.css',
 })
 export class FoodNutritionContainerComponent implements OnInit {
-    foodItem: FoodItem[] | null = null;
+    foodItem: FoodNutritionDetails[] | null = null;
     constructor(
         private _searchInstantService: SearchInstantService,
         private _naturalNutrientsService: NaturalNutrientsService,
@@ -23,14 +23,16 @@ export class FoodNutritionContainerComponent implements OnInit {
 
     async ngOnInit() {
         // const response = await this._searchInstantService.searchInstant();
-        // response.common.forEach((food: any) => {
+        // response.common.forEach((food: FoodNutritionDetails) => {
         //     console.log(food);
         // });
 
         // const response = await this._naturalNutrientsService.searchNaturalNutrients();
-        // response.foods.forEach((food: any) => {
+        // response.foods.forEach((food: FoodNutritionDetails) => {
         //     console.log(food);
         // });
+
+        // console.log(response);
 
         // this.foodItem = response.foods;
 

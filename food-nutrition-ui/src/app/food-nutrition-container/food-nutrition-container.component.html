@@ -8,10 +8,23 @@
                 <h1>{{food.food_name}}</h1>
                 <!-- <h1>{{food.photo?.thumb}}</h1> -->
 
-                <img src={{food.photo?.thumb}} alt={{food.food_name}}>
-                <button mat-flat-button color="primary">{{food.serving_qty}}</button>
+                <!-- <img src={{food.photo?.thumb}} alt={{food.food_name}}> -->
+                <!-- <button mat-flat-button color="primary">{{food.serving_qty}}</button>
                 <button mat-button>{{food.serving_unit}}</button>
-                <button mat-button>{{food.nf_calories}}</button>
+                <button mat-button>{{food.nf_calories}}</button> -->
+
+                <button mat-flat-button color="primary">Serving Qty: {{ food.serving_qty }}</button>
+                <button mat-button>Serving Unit: {{ food.serving_unit }}</button>
+                <button mat-button>Calories: {{ food.nf_calories }}</button>
+                <button mat-button>Weight: {{ food.serving_weight_grams }}g</button>
+                <button mat-button>Total Fat: {{ food.nf_total_fat }}g</button>
+                <button mat-button>Cholesterol: {{ food.nf_cholesterol }}mg</button>
+                <button mat-button>Sodium: {{ food.nf_sodium }}mg</button>
+                <button mat-button>Carbohydrates: {{ food.nf_total_carbohydrate }}g</button>
+                <button mat-button>Dietary Fiber: {{ food.nf_dietary_fiber }}g</button>
+                <button mat-button>Sugars: {{ food.nf_sugars }}g</button>
+                <button mat-button>Protein: {{ food.nf_protein }}g</button>
+                <button mat-button>Potassium: {{ food.nf_potassium }}mg</button>
             }
         </div>
 

@@ -2,14 +2,20 @@ export interface Photo {
     thumb: string;
 }
 
-export interface FoodItem {
+export interface FoodNutritionDetails {
     food_name: string;
-    tag_id: string;
     serving_unit: string;
     serving_qty: number;
-    // common_type: string | null;
-    tag_name: string;
-    // locale: string;
-    photo?: Photo;
+
+    serving_weight_grams: number;
     nf_calories: number;
+    nf_total_fat: number;
+    // nf_saturated_fat: number;
+    nf_cholesterol: number;
+    nf_sodium: number;
+    nf_total_carbohydrate: number;
+    nf_dietary_fiber: number;
+    nf_sugars: number;
+    nf_protein: number;
+    nf_potassium: number;
 }
