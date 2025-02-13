@@ -3,6 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ImaggaTagsService } from '../../_services/imagga-tags.service';
 import { CommonModule } from '@angular/common';
 import { ImaggaResponse, ImaggaTag } from '../../dtos/imagga-response';
+import { excludeTags } from '../../_utils/constants';
 
 @Component({
     selector: 'app-analyze-image',
@@ -28,7 +29,10 @@ export class AnalyzeImageComponent {
         // imaggaResponse.result.tags.forEach((tag: ImaggaTag) => {
         //     console.log(tag.tag.en);
         // });
-        const top10Tags = imaggaResponse.result.tags.slice(0, 10);
+        // const top10Tags = imaggaResponse.result.tags.slice(0, 10);
+        const top10Tags = imaggaResponse.result.tags
+            .filter(tag => !excludeTags.includes(tag.tag.en)) // Exclude general tags
+            .slice(0, 10);
         this._imaggaTagsService.imageTags.set(top10Tags);
         console.log(top10Tags);
         // this.resultTags = top10Image;

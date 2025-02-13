@@ -50,5 +50,14 @@ export const excludeTags = [
     "taste",
     "texture",
     "nutrition facts",
-    "freshness"
+    "freshness",
+    "baked goods",
+    "baked",
+    "bakery",
+    "fresh",
+    "brown",
+    "slice",
+    "crust",
+    "loaf",
+    "loaf of bread"
 ];
