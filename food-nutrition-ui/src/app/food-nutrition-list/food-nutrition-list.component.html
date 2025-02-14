@@ -1,4 +1,4 @@
-<p>food-nutrition-list works!</p>
+<!-- <p>food-nutrition-list works!</p>
 
 @if (imageTags()) {
     @for (tag of imageTags(); track tag) {
@@ -29,13 +29,13 @@
     <br>meal
     <br>wheat
     <br>
-</h1>
+</h1> -->
 
 
 
-<button (click)="clickme()" mat-raised-button>try </button>
+<!-- <button (click)="clickme()" mat-raised-button>try </button> -->
 
-<div>
+<!-- <div>
                 @for (food of foodItem; track food) {
                     <h1>{{food.food_name}}</h1>
 
@@ -52,4 +52,37 @@
                     <button mat-button>Protein: {{ food.nf_protein }}g</button>
                     <button mat-button>Potassium: {{ food.nf_potassium }}mg</button>
                 }
-            </div>
+            </div> -->
+
+<div class="md:w-[35%] xs:w-full">
+    @for (food of foodItem; track food) {
+        <mat-card appearance="outlined"
+            class="{{ isSelected(food) ? '!bg-slate-100' : '' }}
+                hover:bg-slate-100 group relative cursor-pointer"
+            (click)="onSelect(food)"
+        >
+            <mat-card-header>
+                <div class="w-full flex justify-between">
+                    <h1>{{food.food_name}}</h1>
+                    <span class="{{ isSelected(food) ? 'flex' : 'hidden' }} text-gray-500 group-hover:flex">
+                        >>
+                    </span>
+                </div>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="flex text-xs w-full justify-start mt-2">
+                    <p>per {{food.serving_qty}} {{food.serving_unit}}</p>
+                    <span class="font-bold">&nbsp;|&nbsp;</span>
+                    <p>Calories: {{food.nf_calories}} kcal</p>
+                    <span class="font-bold">&nbsp;|&nbsp;</span>
+                    <p>Fat: {{food.nf_total_fat}}g</p>
+                    <span class="font-bold">&nbsp;|&nbsp;</span>
+                    <p>Protein: {{food.nf_protein}}g</p>
+                </div>
+
+            </mat-card-content>
+        </mat-card>
+
+        <br>
+    }
+</div>

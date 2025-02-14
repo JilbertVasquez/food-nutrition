@@ -1,9 +1,9 @@
 @if (imageSrc()) {
     <div class="px-2">
-        <button mat-flat-button (click)="analyzeImage()">Analyze Image</button>
+        <button mat-flat-button (click)="analyzeImage()">{{isAnalyzing ? "Analyzing Image..." : "Analyze Image"}}</button>
     </div>
 
-    Results:
+    <!-- Results:
     <div class="flex gap-5 flex-wrap w-3/4">
         @for (result of resultTags; track result) {
         <div class="py-2">
@@ -14,6 +14,6 @@
     @empty {
         <li>There are no items.</li>
     }
-    </div>
+    </div> -->
 
 }

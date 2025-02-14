@@ -4,6 +4,7 @@ import { ImaggaTagsService } from '../../_services/imagga-tags.service';
 import { CommonModule } from '@angular/common';
 import { ImaggaResponse, ImaggaTag } from '../../dtos/imagga-response';
 import { excludeTags } from '../../_utils/constants';
+import { delay } from 'rxjs';
 
 @Component({
     selector: 'app-analyze-image',
@@ -14,6 +15,7 @@ import { excludeTags } from '../../_utils/constants';
 export class AnalyzeImageComponent {
     imageSrc: Signal<string | ArrayBuffer | null>;
     resultTags: ImaggaTag[] | null = null;
+    isAnalyzing: boolean = false;
 
     constructor(private _imaggaTagsService: ImaggaTagsService) {
         this.imageSrc = this._imaggaTagsService.imageSrc.asReadonly();
@@ -25,6 +27,7 @@ export class AnalyzeImageComponent {
 
         if (!base64Image) return;
 
+        this.isAnalyzing = true;
         const imaggaResponse = await this._imaggaTagsService.getImaggaImageTags(base64Image);
         // imaggaResponse.result.tags.forEach((tag: ImaggaTag) => {
         //     console.log(tag.tag.en);
@@ -44,6 +47,9 @@ export class AnalyzeImageComponent {
         //     console.log(tag);
         //     console.log(tag["en"])
         // });
+
+        this.isAnalyzing = false;
+
     }
 }
 
