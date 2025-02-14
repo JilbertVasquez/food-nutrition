@@ -6,11 +6,12 @@ import { FoodNutritionDetails } from '../dtos/food-description-dto';
 import {MatButtonModule} from '@angular/material/button';
 import { ImaggaTaggerComponent } from '../imagga-tagger/imagga-tagger.component';
 import { FoodNutritionListComponent } from '../food-nutrition-list/food-nutrition-list.component';
+import { FoodNutritionDetailsComponent } from '../food-nutrition-details/food-nutrition-details.component';
 
 @Component({
     selector: 'app-food-nutrition-container',
     standalone: true,
-    imports: [MatButtonModule, ImaggaTaggerComponent, FoodNutritionListComponent],
+    imports: [MatButtonModule, ImaggaTaggerComponent, FoodNutritionListComponent, FoodNutritionDetailsComponent],
     templateUrl: './food-nutrition-container.component.html',
     styleUrl: './food-nutrition-container.component.css',
 })

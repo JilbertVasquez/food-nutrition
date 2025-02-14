@@ -70,8 +70,8 @@ export class FoodNutritionListComponent {
     async clickme() {
         const mockImageTags = [
             { confidence: 100, tag: { en: 'bread' } },
-            { confidence: 35.0150985717773, tag: { en: 'wheat' } },
-            { confidence: 28.2228393554688, tag: { en: 'bun' } }
+            // { confidence: 35.0150985717773, tag: { en: 'wheat' } },
+            // { confidence: 28.2228393554688, tag: { en: 'bun' } }
         ];
 
         let foodList: FoodNutritionDetails[] = [];

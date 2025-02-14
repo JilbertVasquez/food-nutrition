@@ -33,7 +33,7 @@
 
 
 
-<!-- <button (click)="clickme()" mat-raised-button>try </button> -->
+<button (click)="clickme()" mat-raised-button>try </button>
 
 <!-- <div>
                 @for (food of foodItem; track food) {
@@ -54,7 +54,7 @@
                 }
             </div> -->
 
-<div class="md:w-[35%] xs:w-full">
+<div class="w-full bg-red-500">
     @for (food of foodItem; track food) {
         <mat-card appearance="outlined"
             class="{{ isSelected(food) ? '!bg-slate-100' : '' }}

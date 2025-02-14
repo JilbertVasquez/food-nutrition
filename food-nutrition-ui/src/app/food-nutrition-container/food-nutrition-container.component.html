@@ -1,11 +1,16 @@
 <div class="w-full h-full flex justify-center">
     <div class="w-[95%] h-full p-5">
-        <div>
+        <div class="bg-green-900">
             <app-imagga-tagger></app-imagga-tagger>
         </div>
 
-        <div class="h-full p-5">
-            <app-food-nutrition-list></app-food-nutrition-list>
+        <div class=" h-full p-5 bg-green-900 flex justify-between">
+            <div class="md:w-[35%] xs:w-full">
+                <app-food-nutrition-list></app-food-nutrition-list>
+            </div>
+            <div class="md:w-[55%] xs:w-full">
+                <app-food-nutrition-details></app-food-nutrition-details>
+            </div>
 
 
             <!-- <div>
