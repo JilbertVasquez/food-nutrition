@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
+import { FoodNutritionDetails } from '../dtos/food-description-dto';
 
 @Injectable({
     providedIn: 'root',
@@ -10,6 +11,8 @@ export class NaturalNutrientsService {
     private _nutritionixBaseUrl = environment.nutritionixBaseUrl + '/natural/nutrients';
     private _appId = environment.nutritionixAppId;
     private _appKey = environment.nutritionixAppKey;
+
+    selectedFood = signal<FoodNutritionDetails | null>(null);
 
     constructor(private http: HttpClient) {}
 

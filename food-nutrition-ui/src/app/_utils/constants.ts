@@ -30,6 +30,10 @@ export const excludeTags = [
     "studio",
     "gastronomy",
     "culture",
+    "fruit",
+    "fruits",
+    "vegetable",
+    "vegetables",
 
 // const relatedGeneralTags
 

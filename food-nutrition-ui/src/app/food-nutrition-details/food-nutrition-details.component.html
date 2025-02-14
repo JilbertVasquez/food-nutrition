@@ -1,8 +1,8 @@
-@if (selectedFood) {
+@if (selectedFood()) {
     <div class="w-full">
         <mat-card appearance="outlined" class="p-2">
             <mat-card-header>
-                <h1 class="text-3xl font-medium capitalize">{{selectedFood.food_name}}</h1>
+                <h1 class="text-3xl font-medium capitalize">{{selectedFood()?.food_name}}</h1>
             </mat-card-header>
 
             <mat-divider class="!mt-2"></mat-divider>
@@ -11,14 +11,14 @@
                 <mat-card-content>
                     There are
                     <span class="font-semibold">
-                        {{selectedFood.nf_calories}} calories
+                        {{selectedFood()?.nf_calories}} calories
                     </span>
                     in
                     <span>
-                        {{selectedFood.serving_qty}} {{selectedFood.serving_unit}}
+                        {{selectedFood()?.serving_qty}} {{selectedFood()?.serving_unit}}
                     </span>
                     <span>
-                        {{selectedFood.food_name}}.
+                        {{selectedFood()?.food_name}}.
                     </span>
                 </mat-card-content>
             </mat-card>
@@ -36,11 +36,11 @@
                             <h2 class="font-medium">Serving Size</h2>
 
                             <div class="flex justify-center items-center gap-4">
-                                <button mat-icon-button class="!bg-blue-500 !text-white">
+                                <button mat-icon-button class="!bg-blue-500 !text-white" (click)="decreaseQuantity()">
                                     <mat-icon>remove</mat-icon>
                                 </button>
-                                <h2>{{selectedFood.serving_qty}} {{selectedFood.serving_unit}}</h2>
-                                <button mat-icon-button  class="!bg-blue-500 !text-white">
+                                <h2>{{selectedFood()?.serving_qty}} {{selectedFood()?.serving_unit}}</h2>
+                                <button mat-icon-button  class="!bg-blue-500 !text-white" (click)="increaseQuantity()">
                                     <mat-icon>add</mat-icon>
                                 </button>
                             </div>
@@ -54,7 +54,7 @@
                     <div>
                         <div class="flex justify-between px-2">
                             <h2 class="font-semibold text-xl">Calories</h2>
-                            <h2>{{selectedFood.nf_calories}}</h2>
+                            <h2>{{selectedFood()?.nf_calories}}</h2>
                         </div>
                     </div>
 
@@ -63,7 +63,7 @@
                     <div>
                         <div class="flex justify-between px-2">
                             <h2 class="font-medium">Total Fat</h2>
-                            <h2>{{selectedFood.nf_total_fat}}</h2>
+                            <h2>{{selectedFood()?.nf_total_fat}}</h2>
                         </div>
                     </div>
 
@@ -72,7 +72,7 @@
                     <div>
                         <div class="flex justify-between px-2">
                             <h2 class="font-medium">Cholesterol</h2>
-                            <h2>{{selectedFood.nf_cholesterol}}mg</h2>
+                            <h2>{{selectedFood()?.nf_cholesterol}}mg</h2>
                         </div>
                     </div>
 
@@ -81,7 +81,7 @@
                     <div>
                         <div class="flex justify-between px-2">
                             <h2 class="font-medium">Soduim</h2>
-                            <h2>{{selectedFood.nf_sodium}}mg</h2>
+                            <h2>{{selectedFood()?.nf_sodium}}mg</h2>
                         </div>
                     </div>
 
@@ -90,7 +90,7 @@
                     <div>
                         <div class="flex justify-between px-2">
                             <h2 class="font-medium">Total Carbohydrates</h2>
-                            <h2>{{selectedFood.nf_total_carbohydrate}}g</h2>
+                            <h2>{{selectedFood()?.nf_total_carbohydrate}}g</h2>
                         </div>
                     </div>
 
@@ -99,7 +99,7 @@
                     <div>
                         <div class="flex justify-between px-2">
                             <h2 class="font-medium">Dietary Fiber</h2>
-                            <h2>{{selectedFood.nf_dietary_fiber}}g</h2>
+                            <h2>{{selectedFood()?.nf_dietary_fiber}}g</h2>
                         </div>
                     </div>
 
@@ -108,7 +108,7 @@
                     <div>
                         <div class="flex justify-between px-2">
                             <h2 class="font-medium">Sugar</h2>
-                            <h2>{{selectedFood.nf_sugars}}g</h2>
+                            <h2>{{selectedFood()?.nf_sugars}}g</h2>
                         </div>
                     </div>
 
@@ -117,7 +117,7 @@
                     <div>
                         <div class="flex justify-between px-2">
                             <h2 class="font-medium">Protein</h2>
-                            <h2>{{selectedFood.nf_protein}}g</h2>
+                            <h2>{{selectedFood()?.nf_protein}}g</h2>
                         </div>
                     </div>
 

@@ -59,10 +59,13 @@ export class FoodNutritionListComponent {
                     }
                 }
                 this.foodItem = foodList;
+                this._imaggaTagsService.isAnalyzing.set(false);
                 console.log(this.foodItem);
             }
             else {
                 console.log("no value");
+                this.foodItem = null;
+                this._naturalNutrientsService.selectedFood.set(null);
             }
         })
     }
@@ -104,6 +107,7 @@ export class FoodNutritionListComponent {
 
     onSelect(food: FoodNutritionDetails) {
         this.selectedFood = food;
+        this._naturalNutrientsService.selectedFood.set(food);
         console.log("HELLO WORLD")
     }
 

@@ -15,11 +15,13 @@ import { delay } from 'rxjs';
 export class AnalyzeImageComponent {
     imageSrc: Signal<string | ArrayBuffer | null>;
     resultTags: ImaggaTag[] | null = null;
-    isAnalyzing: boolean = false;
+    isAnalyzing: Signal<boolean>;
 
     constructor(private _imaggaTagsService: ImaggaTagsService) {
         this.imageSrc = this._imaggaTagsService.imageSrc.asReadonly();
         if (this.imageSrc() == null) this._imaggaTagsService.imageTags.set(null);
+
+        this.isAnalyzing = this._imaggaTagsService.isAnalyzing.asReadonly();
     }
 
     async analyzeImage() {
@@ -27,7 +29,7 @@ export class AnalyzeImageComponent {
 
         if (!base64Image) return;
 
-        this.isAnalyzing = true;
+        this._imaggaTagsService.isAnalyzing.set(true);
         const imaggaResponse = await this._imaggaTagsService.getImaggaImageTags(base64Image);
         // imaggaResponse.result.tags.forEach((tag: ImaggaTag) => {
         //     console.log(tag.tag.en);
@@ -47,8 +49,6 @@ export class AnalyzeImageComponent {
         //     console.log(tag);
         //     console.log(tag["en"])
         // });
-
-        this.isAnalyzing = false;
 
     }
 }

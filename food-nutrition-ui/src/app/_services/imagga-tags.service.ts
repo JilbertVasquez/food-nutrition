@@ -14,6 +14,8 @@ export class ImaggaTagsService {
     imageSrc = signal<string | ArrayBuffer | null>(null);
     imageTags = signal<ImaggaTag[] | null>(null);
 
+    isAnalyzing = signal<boolean>(false);
+
     constructor(private http: HttpClient) {}
 
     setImage(image: string | ArrayBuffer | null) {

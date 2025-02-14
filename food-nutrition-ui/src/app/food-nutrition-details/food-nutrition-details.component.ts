@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, computed, OnInit, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { FoodNutritionDetails } from '../dtos/food-description-dto';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
+import { NaturalNutrientsService } from '../_services/natural-nutrients.service';
 
 @Component({
     selector: 'app-food-nutrition-details',
@@ -14,25 +15,67 @@ import { MatIconModule } from '@angular/material/icon';
 export class FoodNutritionDetailsComponent implements OnInit {
     // selectedFood: FoodNutritionDetails | null = null;
 
-    selectedFood: FoodNutritionDetails = {
-        food_name: "bread",
-        serving_unit: "slice",
-        serving_qty: 1,
-        serving_weight_grams: 29,
-        nf_calories: 77.14,
-        nf_total_fat: 0.97,
-        nf_cholesterol: 0,
-        nf_sodium: 142.1,
-        nf_total_carbohydrate: 14.33,
-        nf_dietary_fiber: 0.78,
-        nf_sugars: 1.64,
-        nf_protein: 2.57,
-        nf_potassium: 36.54
-    };
+    quantity = signal<number>(1);
 
-    constructor() { }
+    selectedFood = computed(() => {
+        const selectedFood = this._naturalNutrientsService.selectedFood();
+
+        if (!selectedFood) return null;
+
+        return this._computeData(selectedFood, this.quantity());
+    })
+
+    // selectedFood: FoodNutritionDetails = {
+    //     food_name: "bread",
+    //     serving_unit: "slice",
+    //     serving_qty: 1,
+    //     serving_weight_grams: 29,
+    //     nf_calories: 77.14,
+    //     nf_total_fat: 0.97,
+    //     nf_cholesterol: 0,
+    //     nf_sodium: 142.1,
+    //     nf_total_carbohydrate: 14.33,
+    //     nf_dietary_fiber: 0.78,
+    //     nf_sugars: 1.64,
+    //     nf_protein: 2.57,
+    //     nf_potassium: 36.54
+    // };
+
+    constructor(private _naturalNutrientsService: NaturalNutrientsService) { }
 
     ngOnInit() {
 
     }
+
+    increaseQuantity() {
+        this.quantity.update(q => q + 1);
+    }
+
+    decreaseQuantity() {
+        this.quantity.update(q => (q > 1 ? q - 1 : q));
+    }
+
+    private _computeData(selectedFood: FoodNutritionDetails, quantity: number): FoodNutritionDetails {
+        return {
+            food_name: selectedFood.food_name,
+            serving_unit: selectedFood.serving_unit,
+            serving_qty: selectedFood.serving_qty * quantity,
+
+            serving_weight_grams: this._roundToTwo(selectedFood.serving_weight_grams * quantity),
+            nf_calories: this._roundToTwo(selectedFood.nf_calories * quantity),
+            nf_total_fat: this._roundToTwo(selectedFood.nf_total_fat * quantity),
+            nf_cholesterol: this._roundToTwo(selectedFood.nf_cholesterol * quantity),
+            nf_sodium: this._roundToTwo(selectedFood.nf_sodium * quantity),
+            nf_total_carbohydrate: this._roundToTwo(selectedFood.nf_total_carbohydrate * quantity),
+            nf_dietary_fiber: this._roundToTwo(selectedFood.nf_dietary_fiber * quantity),
+            nf_sugars: this._roundToTwo(selectedFood.nf_sugars * quantity),
+            nf_protein: this._roundToTwo(selectedFood.nf_protein * quantity),
+            nf_potassium: this._roundToTwo(selectedFood.nf_potassium * quantity),
+        };
+    }
+
+    private _roundToTwo(value: number): number {
+        return Math.round(value * 100) / 100;
+    }
+
 }

@@ -31,6 +31,7 @@ export class ImageUploaderComponent {
     onDeletePhoto() {
         this.imageSrc.set(null);
         this._imaggaTagsService.imageSrc.set(null);
+        this._imaggaTagsService.imageTags.set(null);
 
         if (this.imageInput) {
             this.imageInput.nativeElement.value = '';
