@@ -1,3 +1,21 @@
-<div class="w-full h-[6%] py-3 bg-green-400 flex justify-center items-center">
+<!-- <div class="w-full h-[6%] py-3 bg-green-400 flex justify-center items-center">
     <h1 class="font-medium text-2xl">Food Nutrition App</h1>
-</div>
+</div> -->
+
+<mat-toolbar class="flex justify-between items-center px-2 !bg-green-400 text-white !text-xl">
+    <div>
+        <a href="">Food Nutrition App</a>
+    </div>
+    <div>
+        <button mat-button [matMenuTriggerFor]="me" class="flex justify-between items-center">
+            {{selectedCategory ? selectedCategory : "Select"}}
+            <mat-icon>arrow_drop_down</mat-icon>
+        </button>
+
+        <mat-menu #me="matMenu">
+            <a mat-menu-item routerLink="">Home</a>
+            <a mat-menu-item routerLink="./food-analyzer" (click)="selectCategory('Food Analyzer')">Food Analyzer</a>
+            <a mat-menu-item routerLink="./users-health" (click)="selectCategory('Users\' Health')">Users' Health</a>
+        </mat-menu>
+    </div>
+</mat-toolbar>
