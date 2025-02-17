@@ -42,3 +42,27 @@ export class FoodNutritionContainerComponent implements OnInit {
         // console.log(imaggaResponse);
     }
 }
+
+/*
+
+issues
+1. when you upload photo, then go to users health and go back again, the photo is gone, but the results still there
+suggestion: don't delete the photo, put it to the signal / service, or delete the photo and the results
+
+2. codebase is not yet clean (last part)
+
+
+improvements:
+1. code efficiency (last part)
+2. if i can use chart, use it on the:
+    - food details
+        - protein
+        - fat
+        - carbohydrates
+        - etc
+
+    - user health
+    * not yet sure kung anong pwedeng gamitin dito para ma display at mapakita ng ayos yung data
+    probably each data has its own pie or whatever chart *circle
+
+*/
