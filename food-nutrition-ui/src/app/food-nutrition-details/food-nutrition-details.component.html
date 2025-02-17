@@ -2,7 +2,13 @@
     <div class="w-full">
         <mat-card appearance="outlined" class="p-2">
             <mat-card-header>
-                <h1 class="text-3xl font-medium capitalize">{{selectedFood()?.food_name}}</h1>
+                <div class="flex justify-between w-full">
+                    <h1 class="text-3xl font-medium capitalize">{{selectedFood()?.food_name}}</h1>
+                        <button mat-flat-button (click)="addFood()">
+                            <mat-icon>add</mat-icon>
+                            Add to Users' Intake
+                        </button>
+                    </div>
             </mat-card-header>
 
             <mat-divider class="!mt-2"></mat-divider>

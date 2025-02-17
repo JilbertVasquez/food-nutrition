@@ -5,6 +5,7 @@ import { FoodNutritionDetails } from '../dtos/food-description-dto';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { NaturalNutrientsService } from '../_services/natural-nutrients.service';
+import { UserService } from '../_services/user.service';
 
 @Component({
     selector: 'app-food-nutrition-details',
@@ -25,7 +26,7 @@ export class FoodNutritionDetailsComponent implements OnInit {
         return this._computeData(selectedFood, this.quantity());
     })
 
-    // selectedFood: FoodNutritionDetails = {
+    // selectedFood = signal<FoodNutritionDetails>({
     //     food_name: "bread",
     //     serving_unit: "slice",
     //     serving_qty: 1,
@@ -39,9 +40,9 @@ export class FoodNutritionDetailsComponent implements OnInit {
     //     nf_sugars: 1.64,
     //     nf_protein: 2.57,
     //     nf_potassium: 36.54
-    // };
+    // });
 
-    constructor(private _naturalNutrientsService: NaturalNutrientsService) { }
+    constructor(private _naturalNutrientsService: NaturalNutrientsService, private _userService: UserService) { }
 
     ngOnInit() {
 
@@ -77,5 +78,36 @@ export class FoodNutritionDetailsComponent implements OnInit {
     private _roundToTwo(value: number): number {
         return Math.round(value * 100) / 100;
     }
+
+    addFood() {
+        const selectedFood = this.selectedFood();
+        if (!selectedFood) return;
+
+        const userFoodIntake = this._userService.userFoodIntake();
+
+        // Find existing food item in the array
+        const existingFood = userFoodIntake.find(food => food.food_name === selectedFood.food_name);
+
+        if (existingFood) {
+            // Append all nutritional values instead of overwriting
+            existingFood.serving_qty += selectedFood.serving_qty;
+            existingFood.serving_weight_grams += selectedFood.serving_weight_grams;
+            existingFood.nf_calories += selectedFood.nf_calories;
+            existingFood.nf_total_fat += selectedFood.nf_total_fat;
+            existingFood.nf_cholesterol += selectedFood.nf_cholesterol;
+            existingFood.nf_sodium += selectedFood.nf_sodium;
+            existingFood.nf_total_carbohydrate += selectedFood.nf_total_carbohydrate;
+            existingFood.nf_dietary_fiber += selectedFood.nf_dietary_fiber;
+            existingFood.nf_sugars += selectedFood.nf_sugars;
+            existingFood.nf_protein += selectedFood.nf_protein;
+            existingFood.nf_potassium += selectedFood.nf_potassium;
+        } else {
+            // Push new food item if it doesn't exist
+            userFoodIntake.push({ ...selectedFood }); // Using spread operator to prevent reference issues
+        }
+
+        console.log(this._userService.userFoodIntake());
+    }
+
 
 }
