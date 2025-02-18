@@ -13,6 +13,7 @@ export class NaturalNutrientsService {
     private _appKey = environment.nutritionixAppKey;
 
     selectedFood = signal<FoodNutritionDetails | null>(null);
+    foodItem = signal<FoodNutritionDetails[] | null>(null);
 
     constructor(private http: HttpClient) {}
 
@@ -26,6 +27,9 @@ export class NaturalNutrientsService {
         const body = { query };
 
         const url = `${this._nutritionixBaseUrl}`;
+
+        console.log("SEARCHING...");
+
         return lastValueFrom(this.http.post<any>(url, body, { headers }));
     }
 }

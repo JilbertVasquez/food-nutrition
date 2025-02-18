@@ -1,4 +1,4 @@
-import { Component, ElementRef, signal, ViewChild } from '@angular/core';
+import { Component, ElementRef, Signal, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
@@ -12,24 +12,26 @@ import { ImaggaTagsService } from '../../_services/imagga-tags.service';
 })
 export class ImageUploaderComponent {
     @ViewChild('imageInput') imageInput!: ElementRef;
-    imageSrc = signal<string | ArrayBuffer | null>(null);
+    imageSrc: Signal<string | ArrayBuffer | null>;
 
-    constructor(private _imaggaTagsService: ImaggaTagsService) {}
+    constructor(private _imaggaTagsService: ImaggaTagsService) {
+        this.imageSrc = this._imaggaTagsService.imageSrc.asReadonly();
+    }
 
     onFileSelected(event: Event): void {
         const file = (event.target as HTMLInputElement).files?.[0];
         if (file) {
             const reader = new FileReader();
             reader.onload = () => {
-                this.imageSrc.set(reader.result);
-                this._imaggaTagsService.setImage(this.imageSrc());
+                // this.imageSrc.set(reader.result);
+                this._imaggaTagsService.setImage(reader.result);
             };
             reader.readAsDataURL(file);
         }
     }
 
     onDeletePhoto() {
-        this.imageSrc.set(null);
+        // this.imageSrc.set(null);
         this._imaggaTagsService.imageSrc.set(null);
         this._imaggaTagsService.imageTags.set(null);
 
