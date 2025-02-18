@@ -1,11 +1,13 @@
 <div class="w-full">
     <h1 class="font-semibold text-xl p-2 py-4">List of User Food Intake</h1>
     @for (userFood of userFoodList(); track userFood) {
+        <div class="w-[80%]">
             <mat-card>
                 <mat-card-content class="text-lg">
                     {{ userFood.serving_qty }} {{ userFood.serving_unit }} of {{userFood.food_name}}
                 </mat-card-content>
             </mat-card>
+        </div>
         }
         <br>
 </div>

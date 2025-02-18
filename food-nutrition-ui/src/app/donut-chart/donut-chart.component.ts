@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @Component({
@@ -7,24 +7,35 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     imports: [NgxChartsModule],
     templateUrl: './donut-chart.component.html',
 })
-export class DonutChartComponent {
-    title = "FoodName";
+export class DonutChartComponent implements OnChanges {
+    @Input({ required: true }) title: string = "";
+    isExceed = false;
+
+
 
     // Recommended daily sugar intake (e.g., 50g)
-    recommendedSugar = 50;
+    @Input({ required: true }) recommendedValue: number = 0;
+    @Input({ required: true }) actualValue: number = 0;
+
+    @Input() height: number = 200;
+    @Input() width: number = 200;
 
     // User's actual sugar intake (e.g., 94g)
-    actualSugar = 44;
-
     // Chart Data
-    chartData = this.calculateChartData();
+    chartData: {name: string, value: number}[] = [];
+
+    ngOnChanges(changes: SimpleChanges) {
+        this.calculateChartData();
+
+        this.isExceed = this.actualValue > this.recommendedValue;
+    }
 
     calculateChartData() {
-        return [
-            { name: `Actual ${this.title} Intake`, value: this.actualSugar },
+        this.chartData = [
+            { name: `Actual ${this.title} Intake`, value: this.actualValue },
             {
                 name: 'Remaining Allowance',
-                value: Math.max(0, this.recommendedSugar - this.actualSugar),
+                value: Math.max(0, this.recommendedValue - this.actualValue),
             },
         ];
     }
