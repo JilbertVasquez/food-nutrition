@@ -65,4 +65,10 @@ improvements:
     * not yet sure kung anong pwedeng gamitin dito para ma display at mapakita ng ayos yung data
     probably each data has its own pie or whatever chart *circle
 
+    use Input Directive in donut chart
+
+    display list of food intake - done
+
+    compute list of food intake attributes and display to donut chart
+
 */
