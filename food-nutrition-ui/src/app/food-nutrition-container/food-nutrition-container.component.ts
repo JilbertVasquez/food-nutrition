@@ -54,7 +54,7 @@ suggestion: don't delete the photo, put it to the signal / service, or delete th
 
 improvements:
 1. code efficiency (last part)
-2. if i can use chart, use it on the:
+2. if i can use chart, use it on the:   - try one, sugar
     - food details
         - protein
         - fat
@@ -63,12 +63,21 @@ improvements:
 
     - user health
     * not yet sure kung anong pwedeng gamitin dito para ma display at mapakita ng ayos yung data
-    probably each data has its own pie or whatever chart *circle
+    probably each data has its own pie or whatever chart *circle        - hmmm
 
-    use Input Directive in donut chart
+    use Input Directive in donut chart - done
 
     display list of food intake - done
 
-    compute list of food intake attributes and display to donut chart
+    compute list of food intake attributes and display to donut chart   - done
+
+    update:
+    - put donut chart for calories on food nutrition details
+    - put donut chart for calorieson user health status
+    - finish all the donut chart for food attributes in user health status
+    - polish food list in user health status
+    - the rest: wala pa, as of now, if matapos na lahat,
+        polish and clean code, saka mag refactor for efficiency ng code,
+        (signals, computed insteads of listening to Singals and constructor asReadOnly, and toObservable)
 
 */
