@@ -1,6 +1,6 @@
 <div class="w-full">
     <div class="w-full p-4">
-        @for (userFood of userFoodIntake(); track userFood) {
+        <!-- @for (userFood of userFoodIntake(); track userFood) {
             <h1>{{userFood.food_name}}</h1>
 
             <button mat-flat-button color="primary">Serving Qty: {{ userFood.serving_qty }}</button>
@@ -16,7 +16,9 @@
             <button mat-button>Protein: {{ userFood.nf_protein }}g</button>
             <button mat-button>Potassium: {{ userFood.nf_potassium }}mg</button>
         }
-        <br>
+        <br> -->
+
+        <app-users-food-intake-list></app-users-food-intake-list>
     </div>
 
 </div>
