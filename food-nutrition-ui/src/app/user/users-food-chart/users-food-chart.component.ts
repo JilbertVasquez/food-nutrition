@@ -14,12 +14,77 @@ export class UsersFoodChartComponent {
     userNutritionConstants = USER_NUTRITION_CONSTANTS;
     userFoodIntake: Signal<FoodNutritionDetails[]>;
 
+    userCalories = computed(() => {
+        const foodList = this.userFoodIntake();
+
+        if (!foodList || foodList.length === 0) return 0;
+
+        const total = foodList.reduce((total, food) => total + food.nf_calories, 0);
+        return Math.round(total * 100) / 100;
+    });
+
+    userFat = computed(() => {
+        const foodList = this.userFoodIntake();
+
+        if (!foodList || foodList.length === 0) return 0;
+
+        const total = foodList.reduce((total, food) => total + food.nf_total_fat, 0);
+        return Math.round(total * 100) / 100;
+    });
+
+    userCholesterol = computed(() => {
+        const foodList = this.userFoodIntake();
+
+        if (!foodList || foodList.length === 0) return 0;
+
+        const total = foodList.reduce((total, food) => total + food.nf_cholesterol, 0);
+        return Math.round(total * 100) / 100;
+    });
+
+    userSoduim = computed(() => {
+        const foodList = this.userFoodIntake();
+
+        if (!foodList || foodList.length === 0) return 0;
+
+        const total = foodList.reduce((total, food) => total + food.nf_sodium, 0);
+        return Math.round(total * 100) / 100;
+    });
+
+    userCarbohydrates = computed(() => {
+        const foodList = this.userFoodIntake();
+
+        if (!foodList || foodList.length === 0) return 0;
+
+        const total = foodList.reduce((total, food) => total + food.nf_total_carbohydrate, 0);
+        return Math.round(total * 100) / 100;
+    });
+
+    userDietaryFiber = computed(() => {
+        const foodList = this.userFoodIntake();
+
+        if (!foodList || foodList.length === 0) return 0;
+
+        const total = foodList.reduce((total, food) => total + food.nf_dietary_fiber, 0);
+        return Math.round(total * 100) / 100;
+        return Math.round(total * 100) / 100;
+    });
+
     userSugar = computed(() => {
         const foodList = this.userFoodIntake();
 
         if (!foodList || foodList.length === 0) return 0;
 
-        return foodList.reduce((total, food) => total + food.nf_sugars, 0);
+        const total = foodList.reduce((total, food) => total + food.nf_sugars, 0);
+        return Math.round(total * 100) / 100;
+    });
+
+    userProtein = computed(() => {
+        const foodList = this.userFoodIntake();
+
+        if (!foodList || foodList.length === 0) return 0;
+
+        const total = foodList.reduce((total, food) => total + food.nf_protein, 0);
+        return Math.round(total * 100) / 100;
     });
 
     constructor(private _userService: UserService) {

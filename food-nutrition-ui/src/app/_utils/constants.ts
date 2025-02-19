@@ -3,7 +3,7 @@ export const USER_NUTRITION_CONSTANTS = {
     TOTAL_FAT: 70, // grams
     CHOLESTEROL: 300, // mg
     SODIUM: 2300, // mg
-    TOTAL_CARBS: 275, // grams
+    TOTAL_CARBOHYDRATES: 275, // grams
     DIETARY_FIBER: 25, // grams
     SUGAR: 50, // grams (including natural and added sugars)
     PROTEIN: 50, // grams

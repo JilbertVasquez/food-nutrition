@@ -16,9 +16,10 @@ export class DonutChartComponent implements OnChanges {
     // Recommended daily sugar intake (e.g., 50g)
     @Input({ required: true }) recommendedValue: number = 0;
     @Input({ required: true }) actualValue: number = 0;
+    @Input({ required: true }) unit: string = "";
 
-    @Input() height: number = 200;
-    @Input() width: number = 200;
+    @Input() height: number = 180;
+    @Input() width: number = 180;
 
     // User's actual sugar intake (e.g., 94g)
     // Chart Data

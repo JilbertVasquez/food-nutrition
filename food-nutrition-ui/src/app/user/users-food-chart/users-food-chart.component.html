@@ -1,10 +1,81 @@
 <div class="w-full">
-    <div class="flex flex-wrap gap-5 justify-start">
-        <div>
+    <div class="flex flex-wrap gap-10 justify-start">
+        <div class=" w-[250px] flex justify-center">
+            <app-donut-chart
+                title="Calories"
+                [recommendedValue]="userNutritionConstants.CALORIES"
+                [actualValue]="userCalories()"
+                unit="kcal"
+            >
+            </app-donut-chart>
+        </div>
+
+        <div class=" w-[250px] flex justify-center">
+            <app-donut-chart
+                title="Fat"
+                [recommendedValue]="userNutritionConstants.TOTAL_FAT"
+                [actualValue]="userFat()"
+                unit="g"
+            >
+            </app-donut-chart>
+        </div>
+
+        <div class=" w-[250px] flex justify-center">
+            <app-donut-chart
+                title="Cholesterol"
+                [recommendedValue]="userNutritionConstants.CHOLESTEROL"
+                [actualValue]="userCholesterol()"
+                unit="mg"
+            >
+            </app-donut-chart>
+        </div>
+
+        <div class=" w-[250px] flex justify-center">
+            <app-donut-chart
+                title="Soduim"
+                [recommendedValue]="userNutritionConstants.SODIUM"
+                [actualValue]="userSoduim()"
+                unit="mg"
+            >
+            </app-donut-chart>
+        </div>
+
+        <div class=" w-[250px] flex justify-center">
+            <app-donut-chart
+                title="Carbohydrates"
+                [recommendedValue]="userNutritionConstants.TOTAL_CARBOHYDRATES"
+                [actualValue]="userCarbohydrates()"
+                unit="g"
+            >
+            </app-donut-chart>
+        </div>
+
+        <div class=" w-[250px] flex justify-center">
+            <app-donut-chart
+                title="Dietary Fiber"
+                [recommendedValue]="userNutritionConstants.DIETARY_FIBER"
+                [actualValue]="userDietaryFiber()"
+                unit="g"
+            >
+            </app-donut-chart>
+        </div>
+
+        <div class=" w-[250px] flex justify-center">
             <app-donut-chart
                 title="Sugar"
                 [recommendedValue]="userNutritionConstants.SUGAR"
                 [actualValue]="userSugar()"
+                unit="g"
+            >
+            </app-donut-chart>
+        </div>
+
+        <div class=" w-[250px] flex justify-center">
+            <app-donut-chart
+                title="Protein"
+                [recommendedValue]="userNutritionConstants.PROTEIN"
+                [actualValue]="userProtein()"
+                unit="g"
             >
             </app-donut-chart>
         </div>

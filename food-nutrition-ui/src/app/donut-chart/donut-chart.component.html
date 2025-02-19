@@ -1,5 +1,5 @@
-<div class="">
-    <h3>{{title}}</h3>
+<div>
+    <h3 class="font-semibold text-lg">{{title}}</h3>
     <ngx-charts-pie-chart
         [view]="[height, width]"
         [results]="chartData"
@@ -9,9 +9,9 @@
     >
     </ngx-charts-pie-chart>
 
-    <div>
-        <h3>Recommended {{title}}: {{recommendedValue}}</h3>
-        <h3 class="{{isExceed ? 'text-blue-500' : ''}}">Intake {{title}}: {{actualValue}}</h3>
+    <div class="text-sm">
+        <h3>Recommended {{title}}: {{recommendedValue}} {{unit}}</h3>
+        <h3 class="{{isExceed ? 'text-blue-500' : ''}}">Intake {{title}}: {{actualValue}} {{unit}}</h3>
     </div>
 
 </div>
