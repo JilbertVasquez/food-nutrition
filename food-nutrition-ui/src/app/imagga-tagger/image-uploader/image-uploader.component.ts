@@ -3,6 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
 import { ImaggaTagsService } from '../../_services/imagga-tags.service';
+import { NaturalNutrientsService } from '../../_services/natural-nutrients.service';
 
 @Component({
     selector: 'app-image-uploader',
@@ -14,7 +15,9 @@ export class ImageUploaderComponent {
     @ViewChild('imageInput') imageInput!: ElementRef;
     imageSrc: Signal<string | ArrayBuffer | null>;
 
-    constructor(private _imaggaTagsService: ImaggaTagsService) {
+    constructor(private _imaggaTagsService: ImaggaTagsService,
+        private _naturalNutrientsService: NaturalNutrientsService
+    ) {
         this.imageSrc = this._imaggaTagsService.imageSrc.asReadonly();
     }
 
@@ -25,6 +28,7 @@ export class ImageUploaderComponent {
             reader.onload = () => {
                 // this.imageSrc.set(reader.result);
                 this._imaggaTagsService.setImage(reader.result);
+                console.log(this._imaggaTagsService.imageSrc());
             };
             reader.readAsDataURL(file);
         }
@@ -34,6 +38,7 @@ export class ImageUploaderComponent {
         // this.imageSrc.set(null);
         this._imaggaTagsService.imageSrc.set(null);
         this._imaggaTagsService.imageTags.set(null);
+        this._naturalNutrientsService.foodItem.set(null);
 
         if (this.imageInput) {
             this.imageInput.nativeElement.value = '';

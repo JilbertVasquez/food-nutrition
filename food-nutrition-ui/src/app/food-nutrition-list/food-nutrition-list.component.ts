@@ -27,12 +27,13 @@ export class FoodNutritionListComponent {
         this.imageTags = this._imaggaTagsService.imageTags.asReadonly();
         this.foodItem = this._naturalNutrientsService.foodItem.asReadonly();
         // console.log(this.imageTags());
-        console.log(this.imageTags());
-        console.log(this.foodItem());
+        // console.log(this.imageTags());
+        // console.log(this.foodItem());
         toObservable(this.imageTags)
             .pipe(takeUntilDestroyed())
             .subscribe(async (hasValue) => {
-                if (hasValue && !this.foodItem()) {
+                console.log("THIS IS LIST",this.imageTags());
+                if (hasValue) {
                     let foodList: FoodNutritionDetails[] = [];
 
                     // console.log(this.imageTags());

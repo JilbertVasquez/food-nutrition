@@ -1,6 +1,6 @@
 @if (imageSrc()) {
     <div class="px-2">
-        <button mat-flat-button (click)="analyzeImage()">{{isAnalyzing() ? "Analyzing Image..." : "Analyze Image"}}</button>
+        <button mat-flat-button (click)="analyzeImage()" [disabled]="isAnalyzing()">{{isAnalyzing() ? "Analyzing Image..." : "Analyze Image"}}</button>
     </div>
 
     <!-- Results:
