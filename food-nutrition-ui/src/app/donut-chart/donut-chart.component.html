@@ -6,12 +6,13 @@
         [doughnut]="true"
         [arcWidth]="0.3"
         [animations]="true"
+        [scheme]=schemeColor()
     >
     </ngx-charts-pie-chart>
 
     <div class="text-sm">
         <h3>Recommended {{title}}: {{recommendedValue}} {{unit}}</h3>
-        <h3 class="{{isExceed ? 'text-blue-500' : ''}}">Intake {{title}}: {{actualValue}} {{unit}}</h3>
+        <h3 class="{{isExceed ? 'text-red-500 font-semibold' : ''}}">Intake {{title}}: {{actualValue}} {{unit}}</h3>
     </div>
 
 </div>

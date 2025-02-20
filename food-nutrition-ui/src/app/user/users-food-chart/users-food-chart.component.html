@@ -1,6 +1,19 @@
 <div class="w-full">
+    <div class="w-full flex ml-[15%]">
+        <div class="flex justify-center pb-10 pt-5">
+            <app-donut-chart
+                title="Calories"
+                [recommendedValue]="userNutritionConstants.CALORIES"
+                [actualValue]="userCalories()"
+                unit="kcal"
+                [height]="300"
+                [width]="300"
+            >
+            </app-donut-chart>
+        </div>
+    </div>
     <div class="flex flex-wrap gap-10 justify-start">
-        <div class=" w-[250px] flex justify-center">
+        <!-- <div class=" w-[250px] flex justify-center">
             <app-donut-chart
                 title="Calories"
                 [recommendedValue]="userNutritionConstants.CALORIES"
@@ -8,7 +21,7 @@
                 unit="kcal"
             >
             </app-donut-chart>
-        </div>
+        </div> -->
 
         <div class=" w-[250px] flex justify-center">
             <app-donut-chart

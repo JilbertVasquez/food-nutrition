@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, computed, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @Component({
@@ -11,6 +11,14 @@ export class DonutChartComponent implements OnChanges {
     @Input({ required: true }) title: string = "";
     isExceed = false;
 
+    schemeColor = computed(() => {
+        const percentage = (this.actualValue / this.recommendedValue) * 100;
+
+        if (percentage < 25) return 'cool';      // Below 25%
+        if (percentage < 50) return 'vivid';     // 25% - 49%
+        if (percentage < 75) return 'fire';      // 50% - 74%
+        return 'flame';                          // 75% and above
+    });
 
 
     // Recommended daily sugar intake (e.g., 50g)
@@ -28,7 +36,8 @@ export class DonutChartComponent implements OnChanges {
     ngOnChanges(changes: SimpleChanges) {
         this.calculateChartData();
 
-        this.isExceed = this.actualValue > this.recommendedValue;
+        // this.isExceed = this.actualValue >= this.recommendedValue;
+        this.isExceed = (this.actualValue / this.recommendedValue) * 100 >= 75;
     }
 
     calculateChartData() {
