@@ -29,6 +29,18 @@
                 </mat-card-content>
             </mat-card>
 
+            <div class=" w-[250px] flex justify-center">
+                <app-donut-chart
+                    title="Source of Calories"
+                    [calories]=selectedFood()!.nf_calories
+                    [protein]=selectedFood()!.nf_protein
+                    [carbohydrate]=selectedFood()!.nf_total_carbohydrate
+                    [fat]=selectedFood()!.nf_total_fat
+                    [isFoodDetails]="true"
+                >
+                </app-donut-chart>
+            </div>
+
             <mat-card-content>
                 <div class="flex flex-col w-full mt-4">
                     <div>

@@ -2,7 +2,7 @@
     <h3 class="font-semibold text-lg">{{title}}</h3>
     <ngx-charts-pie-chart
         [view]="[height, width]"
-        [results]="chartData"
+        [results]="isFoodDetails ? calorieSourceData : chartData"
         [doughnut]="true"
         [arcWidth]="0.3"
         [animations]="true"
@@ -10,9 +10,11 @@
     >
     </ngx-charts-pie-chart>
 
-    <div class="text-sm">
-        <h3>Recommended {{title}}: {{recommendedValue}} {{unit}}</h3>
-        <h3 class="{{isExceed ? 'text-red-500 font-semibold' : ''}}">Intake {{title}}: {{actualValue}} {{unit}}</h3>
-    </div>
+    @if(!isFoodDetails) {
+        <div class="text-sm">
+            <h3>Recommended {{title}}: {{recommendedValue}} {{unit}}</h3>
+            <h3 class="{{isExceed ? 'text-red-500 font-semibold' : ''}}">Intake {{title}}: {{actualValue}} {{unit}}</h3>
+        </div>
+    }
 
 </div>

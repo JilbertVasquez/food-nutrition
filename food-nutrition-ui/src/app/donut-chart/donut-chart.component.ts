@@ -22,19 +22,28 @@ export class DonutChartComponent implements OnChanges {
 
 
     // Recommended daily sugar intake (e.g., 50g)
-    @Input({ required: true }) recommendedValue: number = 0;
-    @Input({ required: true }) actualValue: number = 0;
-    @Input({ required: true }) unit: string = "";
+    @Input() recommendedValue: number = 0;
+    @Input() actualValue: number = 0;
+    @Input() unit: string = "";
 
     @Input() height: number = 180;
     @Input() width: number = 180;
 
+    @Input() isFoodDetails: boolean = false;
+
+    @Input() calories: number = 77.14;
+    @Input() protein: number = 0;
+    @Input() carbohydrate: number = 0;
+    @Input() fat: number = 0;
+
     // User's actual sugar intake (e.g., 94g)
     // Chart Data
     chartData: {name: string, value: number}[] = [];
+    calorieSourceData: { name: string; value: number }[] = [];
 
     ngOnChanges(changes: SimpleChanges) {
         this.calculateChartData();
+        this.calculateCalorieSource();
 
         // this.isExceed = this.actualValue >= this.recommendedValue;
         this.isExceed = (this.actualValue / this.recommendedValue) * 100 >= 75;
@@ -49,4 +58,70 @@ export class DonutChartComponent implements OnChanges {
             },
         ];
     }
+
+    // calculateCalorieSource() {
+    //     // Macronutrient calorie values
+    // const carbCalories = this.carbohydrate * 4;
+    // const proteinCalories = this.protein * 4;
+    // const fatCalories = this.fat * 9;
+
+    // // Total calculated calories
+    // const totalCalculatedCalories = carbCalories + proteinCalories + fatCalories;
+
+    // // Scaling factor to adjust the sum to match the given calories
+    // const scalingFactor = this.calories / totalCalculatedCalories;
+
+    // // Adjusted calorie values
+    // const adjustedCarbCalories = carbCalories * scalingFactor;
+    // const adjustedProteinCalories = proteinCalories * scalingFactor;
+    // const adjustedFatCalories = fatCalories * scalingFactor;
+
+    // // Calculate percentages
+    // const carbPercentage = Math.round((adjustedCarbCalories / this.calories) * 100);
+    // const proteinPercentage = Math.round((adjustedProteinCalories / this.calories) * 100);
+    // const fatPercentage = Math.round((adjustedFatCalories / this.calories) * 100);
+
+    //     this.calorieSourceData = [
+    //         { name: 'Carbohydrates', value: carbPercentage },
+    //         { name: 'Protein', value: proteinPercentage },
+    //         { name: 'Fat', value: fatPercentage },
+    //     ];
+    // }
+
+    calculateCalorieSource() {
+        // Macronutrient calorie values
+        const carbCalories = this.carbohydrate * 4;
+        const proteinCalories = this.protein * 4;
+        const fatCalories = this.fat * 9;
+
+        // Total calculated calories
+        const totalCalculatedCalories = carbCalories + proteinCalories + fatCalories;
+
+        // Scaling factor to match given calories
+        const scalingFactor = this.calories / totalCalculatedCalories;
+
+        // Adjusted values
+        let adjustedCarbCalories = carbCalories * scalingFactor;
+        let adjustedProteinCalories = proteinCalories * scalingFactor;
+        let adjustedFatCalories = fatCalories * scalingFactor;
+
+        // Convert to percentages
+        let carbPercentage = (adjustedCarbCalories / this.calories) * 100;
+        let proteinPercentage = (adjustedProteinCalories / this.calories) * 100;
+        let fatPercentage = (adjustedFatCalories / this.calories) * 100;
+
+        // Round values
+        // carbPercentage = Math.round(carbPercentage);
+        proteinPercentage = Math.round(proteinPercentage);
+        // fatPercentage = 100 - (carbPercentage + proteinPercentage); // Ensure total is 100%
+        fatPercentage = Math.round(fatPercentage);
+        carbPercentage = 100 - (fatPercentage + proteinPercentage); // Ensure total is 100%
+
+        this.calorieSourceData = [
+            { name: 'Carbohydrates', value: carbPercentage },
+            { name: 'Protein', value: proteinPercentage },
+            { name: 'Fat', value: fatPercentage },
+        ];
+    }
+
 }

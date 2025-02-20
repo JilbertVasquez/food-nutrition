@@ -6,10 +6,11 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { NaturalNutrientsService } from '../_services/natural-nutrients.service';
 import { UserService } from '../_services/user.service';
+import { DonutChartComponent } from '../donut-chart/donut-chart.component';
 
 @Component({
     selector: 'app-food-nutrition-details',
-    imports: [MatCardModule, MatButtonModule, MatDividerModule, MatIconModule],
+    imports: [MatCardModule, MatButtonModule, MatDividerModule, MatIconModule, DonutChartComponent],
     templateUrl: './food-nutrition-details.component.html',
     styleUrl: './food-nutrition-details.component.css'
 })
