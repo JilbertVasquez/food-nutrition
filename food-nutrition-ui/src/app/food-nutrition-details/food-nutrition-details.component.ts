@@ -50,6 +50,7 @@ export class FoodNutritionDetailsComponent implements OnInit {
     }
 
     increaseQuantity() {
+        console.log(this.quantity());
         this.quantity.update(q => q + 1);
     }
 

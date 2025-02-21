@@ -7,4 +7,12 @@ import { FoodNutritionDetails } from '../dtos/food-description-dto';
 export class UserService {
     userFoodIntake = signal<FoodNutritionDetails[]>([]);
     constructor() {}
+
+    updateUserFoodIntake(updatedFood: FoodNutritionDetails) {
+        this.userFoodIntake.update(foodList => {
+            return foodList.map(food =>
+                food.food_name === updatedFood.food_name ? updatedFood : food
+            );
+        });
+    }
 }
