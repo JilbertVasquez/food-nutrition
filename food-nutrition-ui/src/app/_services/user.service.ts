@@ -15,4 +15,12 @@ export class UserService {
             );
         });
     }
+
+    deleteUserFoodIntake(deleteFood: FoodNutritionDetails) {
+        this.userFoodIntake.update(foodList => {
+            return foodList.filter(food =>
+                food.food_name !== deleteFood.food_name
+            );
+        });
+    }
 }

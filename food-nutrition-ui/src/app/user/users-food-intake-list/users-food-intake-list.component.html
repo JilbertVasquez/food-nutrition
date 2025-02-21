@@ -2,9 +2,21 @@
     <h1 class="font-semibold text-xl p-2 py-4">List of User Food Intake</h1>
     @for (userFood of userFoodList(); track userFood) {
         <div class="w-[80%] py-2">
-            <mat-card (click)="openFoodDetails(userFood)">
+            <mat-card>
                 <mat-card-content class="text-lg">
-                    {{ userFood.serving_qty }} {{ userFood.serving_unit }} of {{userFood.food_name}}
+                    <div class="flex justify-between items-center">
+                        <div class="flex flex-wrap">
+                            {{ userFood.serving_qty }} {{ userFood.serving_unit }} of {{userFood.food_name}}
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button mat-icon-button color="primary" (click)="openFoodDetails(userFood)">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-icon-button color="warn" (click)="onDeleteFoodItem(userFood)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </div>
+                    </div>
                 </mat-card-content>
             </mat-card>
         </div>

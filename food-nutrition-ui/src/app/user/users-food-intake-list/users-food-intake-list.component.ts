@@ -4,10 +4,12 @@ import { UserService } from '../../_services/user.service';
 import { MatCardModule } from '@angular/material/card';
 import { DialogService } from '../../_services/dialog.service';
 import { lastValueFrom } from 'rxjs';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
     selector: 'app-users-food-intake-list',
-    imports: [MatCardModule],
+    imports: [MatCardModule, MatIconModule, MatButtonModule],
     templateUrl: './users-food-intake-list.component.html',
     styleUrl: './users-food-intake-list.component.css',
 })
@@ -37,6 +39,16 @@ export class UsersFoodIntakeListComponent {
         if (newData) {
             this._userService.updateUserFoodIntake(newData);
         }
+    }
+
+    async onDeleteFoodItem(deleteFood: FoodNutritionDetails) {
+        const isConfirm = await lastValueFrom(this._dialogService.confirmationModal(`Do you want to delete ${deleteFood.food_name} food?`).afterClosed());
+
+        if (!isConfirm) return;
+
+        this._userService.deleteUserFoodIntake(deleteFood);
+
+        this._dialogService.message(`The ${deleteFood.food_name} food is successfully deleted.`);
     }
 
 }
