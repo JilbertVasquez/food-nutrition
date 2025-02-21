@@ -21,29 +21,29 @@ export class FoodNutritionDetailsComponent implements OnInit {
 
     quantity = signal<number>(1);
 
-    // selectedFood = computed(() => {
-    //     const selectedFood = this._naturalNutrientsService.selectedFood();
+    selectedFood = computed(() => {
+        const selectedFood = this._naturalNutrientsService.selectedFood();
 
-    //     if (!selectedFood) return null;
+        if (!selectedFood) return null;
 
-    //     return this._computeData(selectedFood, this.quantity());
-    // })
+        return this._computeData(selectedFood, this.quantity());
+    })
 
-    selectedFood = signal<FoodNutritionDetails>({
-        food_name: "bread",
-        serving_unit: "slice",
-        serving_qty: 1,
-        serving_weight_grams: 29,
-        nf_calories: 77.14,
-        nf_total_fat: 0.97,
-        nf_cholesterol: 0,
-        nf_sodium: 142.1,
-        nf_total_carbohydrate: 14.33,
-        nf_dietary_fiber: 0.78,
-        nf_sugars: 1.64,
-        nf_protein: 2.57,
-        nf_potassium: 36.54
-    });
+    // selectedFood = signal<FoodNutritionDetails>({
+    //     food_name: "bread",
+    //     serving_unit: "slice",
+    //     serving_qty: 1,
+    //     serving_weight_grams: 29,
+    //     nf_calories: 77.14,
+    //     nf_total_fat: 0.97,
+    //     nf_cholesterol: 0,
+    //     nf_sodium: 142.1,
+    //     nf_total_carbohydrate: 14.33,
+    //     nf_dietary_fiber: 0.78,
+    //     nf_sugars: 1.64,
+    //     nf_protein: 2.57,
+    //     nf_potassium: 36.54
+    // });
 
     constructor(private _naturalNutrientsService: NaturalNutrientsService, private _userService: UserService, private _dialogService: DialogService) { }
 
