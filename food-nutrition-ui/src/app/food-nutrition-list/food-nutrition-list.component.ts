@@ -33,7 +33,7 @@ export class FoodNutritionListComponent {
             .pipe(takeUntilDestroyed())
             .subscribe(async (hasValue) => {
                 console.log("THIS IS LIST",this.imageTags());
-                if (hasValue) {
+                if (hasValue && !this.foodItem()) {
                     let foodList: FoodNutritionDetails[] = [];
 
                     // console.log(this.imageTags());

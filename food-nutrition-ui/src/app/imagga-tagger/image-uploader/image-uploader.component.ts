@@ -28,7 +28,8 @@ export class ImageUploaderComponent {
             reader.onload = () => {
                 // this.imageSrc.set(reader.result);
                 this._imaggaTagsService.setImage(reader.result);
-                console.log(this._imaggaTagsService.imageSrc());
+                this._naturalNutrientsService.foodItem.set(null);
+                // console.log(this._imaggaTagsService.imageSrc());
             };
             reader.readAsDataURL(file);
         }

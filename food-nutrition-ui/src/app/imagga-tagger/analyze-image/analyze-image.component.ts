@@ -37,7 +37,7 @@ export class AnalyzeImageComponent {
         // const top10Tags = imaggaResponse.result.tags.slice(0, 10);
         const top10Tags = imaggaResponse.result.tags
             .filter(tag => !excludeTags.includes(tag.tag.en)) // Exclude general tags
-            .slice(0, 10);
+            .slice(0, 2);
         this._imaggaTagsService.imageTags.set(top10Tags);
         // console.log("IMAGE TAGS");
         // console.log(this._imaggaTagsService.imageTags());
