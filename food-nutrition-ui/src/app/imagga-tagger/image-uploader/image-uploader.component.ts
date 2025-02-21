@@ -4,6 +4,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
 import { ImaggaTagsService } from '../../_services/imagga-tags.service';
 import { NaturalNutrientsService } from '../../_services/natural-nutrients.service';
+import { DialogService } from '../../_services/dialog.service';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
     selector: 'app-image-uploader',
@@ -16,7 +18,8 @@ export class ImageUploaderComponent {
     imageSrc: Signal<string | ArrayBuffer | null>;
 
     constructor(private _imaggaTagsService: ImaggaTagsService,
-        private _naturalNutrientsService: NaturalNutrientsService
+        private _naturalNutrientsService: NaturalNutrientsService,
+        private _dialogService: DialogService
     ) {
         this.imageSrc = this._imaggaTagsService.imageSrc.asReadonly();
     }
@@ -35,7 +38,10 @@ export class ImageUploaderComponent {
         }
     }
 
-    onDeletePhoto() {
+    async onDeletePhoto() {
+        const isConfirm = await lastValueFrom(this._dialogService.confirmationModal(`Do you want to delete this photo?`).afterClosed());
+
+        if (!isConfirm) return;
         // this.imageSrc.set(null);
         this._imaggaTagsService.imageSrc.set(null);
         this._imaggaTagsService.imageTags.set(null);
