@@ -7,6 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { NaturalNutrientsService } from '../_services/natural-nutrients.service';
 import { UserService } from '../_services/user.service';
 import { DonutChartComponent } from '../donut-chart/donut-chart.component';
+import { DialogService } from '../_services/dialog.service';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
     selector: 'app-food-nutrition-details',
@@ -43,7 +45,7 @@ export class FoodNutritionDetailsComponent implements OnInit {
     //     nf_potassium: 36.54
     // });
 
-    constructor(private _naturalNutrientsService: NaturalNutrientsService, private _userService: UserService) { }
+    constructor(private _naturalNutrientsService: NaturalNutrientsService, private _userService: UserService, private _dialogService: DialogService) { }
 
     ngOnInit() {
 
@@ -81,9 +83,15 @@ export class FoodNutritionDetailsComponent implements OnInit {
         return Math.round(value * 100) / 100;
     }
 
-    addFood() {
+    async addFood() {
         const selectedFood = this.selectedFood();
         if (!selectedFood) return;
+
+        const isConfirm = await lastValueFrom(this._dialogService.confirmationModal(`Do you want to add this ${selectedFood.food_name} food to your food intake?`).afterClosed());
+
+        if (!isConfirm) return;
+
+        this._dialogService.message(`${selectedFood.food_name} food is successfully added to your food intake.`);
 
         const userFoodIntake = this._userService.userFoodIntake();
 
