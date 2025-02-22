@@ -64,18 +64,18 @@ export class FoodDetailsModalComponent {
         return {
             food_name: selectedFood.food_name,
             serving_unit: selectedFood.serving_unit,
-            serving_qty: 1 * quantity,
+            serving_qty: quantity,
 
-            serving_weight_grams: this._roundToTwo(selectedFood.serving_weight_grams * quantity),
-            nf_calories: this._roundToTwo(selectedFood.nf_calories * quantity),
-            nf_total_fat: this._roundToTwo(selectedFood.nf_total_fat * quantity),
-            nf_cholesterol: this._roundToTwo(selectedFood.nf_cholesterol * quantity),
-            nf_sodium: this._roundToTwo(selectedFood.nf_sodium * quantity),
-            nf_total_carbohydrate: this._roundToTwo(selectedFood.nf_total_carbohydrate * quantity),
-            nf_dietary_fiber: this._roundToTwo(selectedFood.nf_dietary_fiber * quantity),
-            nf_sugars: this._roundToTwo(selectedFood.nf_sugars * quantity),
-            nf_protein: this._roundToTwo(selectedFood.nf_protein * quantity),
-            nf_potassium: this._roundToTwo(selectedFood.nf_potassium * quantity),
+            serving_weight_grams: this._roundToTwo(selectedFood.serving_weight_grams / selectedFood.serving_qty * quantity),
+            nf_calories: this._roundToTwo(selectedFood.nf_calories / selectedFood.serving_qty * quantity),
+            nf_total_fat: this._roundToTwo(selectedFood.nf_total_fat / selectedFood.serving_qty * quantity),
+            nf_cholesterol: this._roundToTwo(selectedFood.nf_cholesterol / selectedFood.serving_qty * quantity),
+            nf_sodium: this._roundToTwo(selectedFood.nf_sodium / selectedFood.serving_qty * quantity),
+            nf_total_carbohydrate: this._roundToTwo(selectedFood.nf_total_carbohydrate / selectedFood.serving_qty * quantity),
+            nf_dietary_fiber: this._roundToTwo(selectedFood.nf_dietary_fiber / selectedFood.serving_qty * quantity),
+            nf_sugars: this._roundToTwo(selectedFood.nf_sugars / selectedFood.serving_qty * quantity),
+            nf_protein: this._roundToTwo(selectedFood.nf_protein / selectedFood.serving_qty * quantity),
+            nf_potassium: this._roundToTwo(selectedFood.nf_potassium / selectedFood.serving_qty * quantity),
         };
     }
 
