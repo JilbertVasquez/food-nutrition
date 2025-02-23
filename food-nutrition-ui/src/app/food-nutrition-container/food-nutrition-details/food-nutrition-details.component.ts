@@ -6,7 +6,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { NaturalNutrientsService } from '../../_services/natural-nutrients.service';
 import { UserService } from '../../_services/user.service';
-import { DonutChartComponent } from '../../donut-chart/donut-chart.component';
+import { DonutChartComponent } from '../../_shared/donut-chart/donut-chart.component';
 import { DialogService } from '../../_services/dialog.service';
 import { lastValueFrom } from 'rxjs';
 

@@ -3,7 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
-import { DonutChartComponent } from '../../donut-chart/donut-chart.component';
+import { DonutChartComponent } from '../donut-chart/donut-chart.component';
 import { FoodNutritionDetails } from '../../dtos/food-description-dto';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
@@ -27,7 +27,7 @@ export class FoodDetailsModalComponent {
     })
 
     constructor(private _dialogRef: MatDialogRef<FoodDetailsModalComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: {foodData: FoodNutritionDetails}
+        @Inject(MAT_DIALOG_DATA) public data: { foodData: FoodNutritionDetails }
     ) {
         this.quantity.set(this.data.foodData.serving_qty);
 

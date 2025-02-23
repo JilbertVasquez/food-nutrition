@@ -1,5 +1,5 @@
 import { Component, computed, Signal } from '@angular/core';
-import { DonutChartComponent } from '../../donut-chart/donut-chart.component';
+import { DonutChartComponent } from '../../_shared/donut-chart/donut-chart.component';
 import { FoodNutritionDetails } from '../../dtos/food-description-dto';
 import { UserService } from '../../_services/user.service';
 import { USER_NUTRITION_CONSTANTS } from '../../_utils/constants';
