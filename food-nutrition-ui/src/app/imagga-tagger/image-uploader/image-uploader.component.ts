@@ -30,7 +30,7 @@ export class ImageUploaderComponent {
         if (file) {
             const reader = new FileReader();
             reader.onload = () => {
-                this._imaggaTagsService.setImage(reader.result);
+                this._imaggaTagsService.imageSrc.set(reader.result);
                 this._naturalNutrientsService.foodItem.set(null);
             };
             reader.readAsDataURL(file);

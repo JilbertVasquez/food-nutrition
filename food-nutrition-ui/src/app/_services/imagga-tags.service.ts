@@ -18,10 +18,6 @@ export class ImaggaTagsService {
 
     constructor(private http: HttpClient) {}
 
-    setImage(image: string | ArrayBuffer | null) {
-        this.imageSrc.set(image);
-    }
-
     getImaggaImageTags(image: string | ArrayBuffer) {
         const headers = new HttpHeaders({
             'Authorization': this._imaggaToken,
