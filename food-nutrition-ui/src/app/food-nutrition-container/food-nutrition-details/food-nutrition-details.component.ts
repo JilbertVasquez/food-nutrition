@@ -69,7 +69,8 @@ export class FoodNutritionDetailsComponent {
         const selectedFood = this.selectedFood();
         if (!selectedFood) return;
 
-        const isConfirm = await lastValueFrom(this._dialogService.confirmationModal(`Do you want to add this ${selectedFood.food_name} food to your food intake?`).afterClosed());
+        const modalRef = this._dialogService.confirmationModal(`Do you want to add this ${selectedFood.food_name} food to your food intake?`).afterClosed();
+        const isConfirm = await lastValueFrom(modalRef);
 
         if (!isConfirm) return;
 

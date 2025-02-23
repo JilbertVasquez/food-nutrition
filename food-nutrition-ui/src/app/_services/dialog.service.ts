@@ -19,18 +19,8 @@ export class DialogService {
         });
     }
 
-    error(message: string) {
-        this._snackBar.open(message, 'dismiss', {
-            duration: this.defailt_duration,
-        });
-    }
-
-    confirmationModal(
-        message: string
-    ): MatDialogRef<ConfirmationModalComponent> {
-        return this._modal.open(ConfirmationModalComponent, {
-            data: {message: message},
-        });
+    confirmationModal(message: string): MatDialogRef<ConfirmationModalComponent> {
+        return this._modal.open(ConfirmationModalComponent, { data: {message: message} });
     }
 
     foodNutritionDetailsModal(foodData: FoodNutritionDetails): MatDialogRef<FoodDetailsModalComponent> {

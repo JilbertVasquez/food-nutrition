@@ -38,7 +38,8 @@ export class ImageUploaderComponent {
     }
 
     async onDeletePhoto() {
-        const isConfirm = await lastValueFrom(this._dialogService.confirmationModal(`Do you want to delete this photo?`).afterClosed());
+        const modalRef = this._dialogService.confirmationModal(`Do you want to delete this photo?`).afterClosed();
+        const isConfirm = await lastValueFrom(modalRef);
 
         if (!isConfirm) return;
         this._imaggaTagsService.imageSrc.set(null);

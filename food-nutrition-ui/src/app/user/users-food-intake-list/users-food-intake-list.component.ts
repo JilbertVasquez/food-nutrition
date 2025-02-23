@@ -21,7 +21,8 @@ export class UsersFoodIntakeListComponent {
     }
 
     async openFoodDetails(foodData: FoodNutritionDetails) {
-        const newData = await lastValueFrom(this._dialogService.foodNutritionDetailsModal(foodData).afterClosed());
+        const modalRef = this._dialogService.foodNutritionDetailsModal(foodData).afterClosed();
+        const newData = await lastValueFrom(modalRef);
 
         if (newData) {
             this._userService.updateUserFoodIntake(newData);
@@ -29,7 +30,8 @@ export class UsersFoodIntakeListComponent {
     }
 
     async onDeleteFoodItem(deleteFood: FoodNutritionDetails) {
-        const isConfirm = await lastValueFrom(this._dialogService.confirmationModal(`Do you want to delete ${deleteFood.food_name} food?`).afterClosed());
+        const modalRef = this._dialogService.confirmationModal(`Do you want to delete ${deleteFood.food_name} food?`).afterClosed();
+        const isConfirm = await lastValueFrom(modalRef);
 
         if (!isConfirm) return;
 
