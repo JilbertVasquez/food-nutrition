@@ -1,11 +1,9 @@
-import { Component, computed, Inject, OnInit, signal } from '@angular/core';
+import { Component, computed, Inject, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { DonutChartComponent } from '../../donut-chart/donut-chart.component';
-import { NaturalNutrientsService } from '../../_services/natural-nutrients.service';
-import { UserService } from '../../_services/user.service';
 import { FoodNutritionDetails } from '../../dtos/food-description-dto';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
@@ -16,8 +14,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
     styleUrl: './food-details-modal.component.css',
 })
 export class FoodDetailsModalComponent {
-    // selectedFood: FoodNutritionDetails | null = null;
-
     quantity = signal<number>(1);
 
     selectedFood = computed(() => {
@@ -30,8 +26,7 @@ export class FoodDetailsModalComponent {
         return this._computeData(selectedFood, this.quantity());
     })
 
-    constructor(private _naturalNutrientsService: NaturalNutrientsService, private _userService: UserService,
-        private _dialogRef: MatDialogRef<FoodDetailsModalComponent>,
+    constructor(private _dialogRef: MatDialogRef<FoodDetailsModalComponent>,
         @Inject(MAT_DIALOG_DATA) public data: {foodData: FoodNutritionDetails}
     ) {
         this.quantity.set(this.data.foodData.serving_qty);
@@ -39,17 +34,6 @@ export class FoodDetailsModalComponent {
         this._dialogRef.backdropClick().subscribe(() => {
             this._dialogRef.close(this.selectedFood());
         });
-    }
-
-    ngOnInit() { }
-
-    confirm() {
-        this._dialogRef.close(true);
-    }
-
-    cancel() {
-        console.log("HELLO WORLD");
-        this._dialogRef.close(false);
     }
 
     increaseQuantity() {
