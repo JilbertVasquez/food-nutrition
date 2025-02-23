@@ -31,8 +31,8 @@ export class AnalyzeImageComponent {
         const imaggaResponse = await this._imaggaTagsService.getImaggaImageTags(base64Image);
         const top10Tags = imaggaResponse.result.tags
             .filter(tag => !excludeTags.includes(tag.tag.en))
-            .slice(0, 2);
-            
+            .slice(0, 10);
+
         this._imaggaTagsService.imageTags.set(top10Tags);
     }
 }
