@@ -47,10 +47,11 @@ export class FoodDetailsModalComponent {
     private _computeData(selectedFood: FoodNutritionDetails, quantity: number): FoodNutritionDetails {
         return {
             food_name: selectedFood.food_name,
+
             serving_unit: selectedFood.serving_unit,
             serving_qty: quantity,
-
             serving_weight_grams: this._roundToTwo(selectedFood.serving_weight_grams / selectedFood.serving_qty * quantity),
+            
             nf_calories: this._roundToTwo(selectedFood.nf_calories / selectedFood.serving_qty * quantity),
             nf_total_fat: this._roundToTwo(selectedFood.nf_total_fat / selectedFood.serving_qty * quantity),
             nf_cholesterol: this._roundToTwo(selectedFood.nf_cholesterol / selectedFood.serving_qty * quantity),

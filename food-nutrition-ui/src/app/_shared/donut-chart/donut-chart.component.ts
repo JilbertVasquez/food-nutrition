@@ -8,9 +8,6 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     templateUrl: './donut-chart.component.html',
 })
 export class DonutChartComponent implements OnChanges {
-    @Input({ required: true }) title: string = "";
-    isExceed = false;
-
     schemeColor = computed(() => {
         const percentage = (this.actualValueSignal() / this.recommendedValueSignal()) * 100;
 
@@ -20,6 +17,8 @@ export class DonutChartComponent implements OnChanges {
         return 'flame';                          // 75% and above
     });
 
+    @Input({ required: true }) title: string = "";
+    isExceed = false;
 
     @Input() recommendedValue: number = 0;
     @Input() actualValue: number = 0;
@@ -62,31 +61,30 @@ export class DonutChartComponent implements OnChanges {
     }
 
     calculateCalorieSource() {
-        const carbCalories = this.carbohydrate * 4;
+        const carbohydrateCalories = this.carbohydrate * 4;
         const proteinCalories = this.protein * 4;
         const fatCalories = this.fat * 9;
 
-        const totalCalculatedCalories = carbCalories + proteinCalories + fatCalories;
+        const totalCalculatedCalories = carbohydrateCalories + proteinCalories + fatCalories;
 
         const scalingFactor = this.calories / totalCalculatedCalories;
 
-        let adjustedCarbCalories = carbCalories * scalingFactor;
+        let adjustedCarbohydrateCalories = carbohydrateCalories * scalingFactor;
         let adjustedProteinCalories = proteinCalories * scalingFactor;
         let adjustedFatCalories = fatCalories * scalingFactor;
 
-        let carbPercentage = (adjustedCarbCalories / this.calories) * 100;
+        let carbohydratePercentage = (adjustedCarbohydrateCalories / this.calories) * 100;
         let proteinPercentage = (adjustedProteinCalories / this.calories) * 100;
         let fatPercentage = (adjustedFatCalories / this.calories) * 100;
 
         proteinPercentage = Math.round(proteinPercentage);
         fatPercentage = Math.round(fatPercentage);
-        carbPercentage = 100 - (fatPercentage + proteinPercentage);
+        carbohydratePercentage = 100 - (fatPercentage + proteinPercentage);
 
         this.calorieSourceData = [
-            { name: 'Carbohydrates', value: carbPercentage },
+            { name: 'Carbohydrates', value: carbohydratePercentage },
             { name: 'Protein', value: proteinPercentage },
             { name: 'Fat', value: fatPercentage },
         ];
     }
-
 }

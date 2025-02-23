@@ -66,7 +66,6 @@ export class UsersFoodChartComponent {
 
         const total = foodList.reduce((total, food) => total + food.nf_dietary_fiber, 0);
         return Math.round(total * 100) / 100;
-        return Math.round(total * 100) / 100;
     });
 
     userSugar = computed(() => {

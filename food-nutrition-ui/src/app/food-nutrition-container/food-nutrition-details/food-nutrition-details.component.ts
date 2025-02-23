@@ -17,7 +17,6 @@ import { lastValueFrom } from 'rxjs';
     styleUrl: './food-nutrition-details.component.css'
 })
 export class FoodNutritionDetailsComponent {
-
     quantity = signal<number>(1);
 
     selectedFood = computed(() => {
@@ -42,29 +41,6 @@ export class FoodNutritionDetailsComponent {
         this.quantity.update(q => (q > 1 ? q - 1 : q));
     }
 
-    private _computeData(selectedFood: FoodNutritionDetails, quantity: number): FoodNutritionDetails {
-        return {
-            food_name: selectedFood.food_name,
-            serving_unit: selectedFood.serving_unit,
-            serving_qty: selectedFood.serving_qty * quantity,
-
-            serving_weight_grams: this._roundToTwo(selectedFood.serving_weight_grams * quantity),
-            nf_calories: this._roundToTwo(selectedFood.nf_calories * quantity),
-            nf_total_fat: this._roundToTwo(selectedFood.nf_total_fat * quantity),
-            nf_cholesterol: this._roundToTwo(selectedFood.nf_cholesterol * quantity),
-            nf_sodium: this._roundToTwo(selectedFood.nf_sodium * quantity),
-            nf_total_carbohydrate: this._roundToTwo(selectedFood.nf_total_carbohydrate * quantity),
-            nf_dietary_fiber: this._roundToTwo(selectedFood.nf_dietary_fiber * quantity),
-            nf_sugars: this._roundToTwo(selectedFood.nf_sugars * quantity),
-            nf_protein: this._roundToTwo(selectedFood.nf_protein * quantity),
-            nf_potassium: this._roundToTwo(selectedFood.nf_potassium * quantity),
-        };
-    }
-
-    private _roundToTwo(value: number): number {
-        return Math.round(value * 100) / 100;
-    }
-
     async addFood() {
         const selectedFood = this.selectedFood();
         if (!selectedFood) return;
@@ -83,6 +59,7 @@ export class FoodNutritionDetailsComponent {
         if (existingFood) {
             existingFood.serving_qty += selectedFood.serving_qty;
             existingFood.serving_weight_grams += selectedFood.serving_weight_grams;
+
             existingFood.nf_calories += selectedFood.nf_calories;
             existingFood.nf_total_fat += selectedFood.nf_total_fat;
             existingFood.nf_cholesterol += selectedFood.nf_cholesterol;
@@ -92,8 +69,33 @@ export class FoodNutritionDetailsComponent {
             existingFood.nf_sugars += selectedFood.nf_sugars;
             existingFood.nf_protein += selectedFood.nf_protein;
             existingFood.nf_potassium += selectedFood.nf_potassium;
-        } else {
+        }
+        else {
             userFoodIntake.push({ ...selectedFood });
         }
+    }
+
+    private _computeData(selectedFood: FoodNutritionDetails, quantity: number): FoodNutritionDetails {
+        return {
+            food_name: selectedFood.food_name,
+            
+            serving_unit: selectedFood.serving_unit,
+            serving_qty: selectedFood.serving_qty * quantity,
+            serving_weight_grams: this._roundToTwo(selectedFood.serving_weight_grams * quantity),
+
+            nf_calories: this._roundToTwo(selectedFood.nf_calories * quantity),
+            nf_total_fat: this._roundToTwo(selectedFood.nf_total_fat * quantity),
+            nf_cholesterol: this._roundToTwo(selectedFood.nf_cholesterol * quantity),
+            nf_sodium: this._roundToTwo(selectedFood.nf_sodium * quantity),
+            nf_total_carbohydrate: this._roundToTwo(selectedFood.nf_total_carbohydrate * quantity),
+            nf_dietary_fiber: this._roundToTwo(selectedFood.nf_dietary_fiber * quantity),
+            nf_sugars: this._roundToTwo(selectedFood.nf_sugars * quantity),
+            nf_protein: this._roundToTwo(selectedFood.nf_protein * quantity),
+            nf_potassium: this._roundToTwo(selectedFood.nf_potassium * quantity),
+        };
+    }
+
+    private _roundToTwo(value: number): number {
+        return Math.round(value * 100) / 100;
     }
 }
