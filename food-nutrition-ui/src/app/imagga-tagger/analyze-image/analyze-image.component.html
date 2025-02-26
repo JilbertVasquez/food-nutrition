@@ -1,19 +1,10 @@
 @if (imageSrc()) {
     <div class="px-2">
-        <button mat-flat-button (click)="analyzeImage()" [disabled]="isAnalyzing()">{{isAnalyzing() ? "Analyzing Image..." : "Analyze Image"}}</button>
+        <button mat-flat-button
+            (click)="analyzeImage()"
+            [disabled]="isAnalyzing()"
+        >
+            {{isAnalyzing() ? "Analyzing Image..." : "Analyze Image"}}
+        </button>
     </div>
-
-    <!-- Results:
-    <div class="flex gap-5 flex-wrap w-3/4">
-        @for (result of resultTags; track result) {
-        <div class="py-2">
-            <button class="py-2" mat-raised-button>{{result.tag.en}}</button>
-        </div>
-
-    }
-    @empty {
-        <li>There are no items.</li>
-    }
-    </div> -->
-
 }

@@ -1,11 +1,9 @@
-import { Component, computed, Inject, OnInit, signal } from '@angular/core';
+import { Component, computed, Inject, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
-import { DonutChartComponent } from '../../donut-chart/donut-chart.component';
-import { NaturalNutrientsService } from '../../_services/natural-nutrients.service';
-import { UserService } from '../../_services/user.service';
+import { DonutChartComponent } from '../donut-chart/donut-chart.component';
 import { FoodNutritionDetails } from '../../dtos/food-description-dto';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
@@ -16,8 +14,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
     styleUrl: './food-details-modal.component.css',
 })
 export class FoodDetailsModalComponent {
-    // selectedFood: FoodNutritionDetails | null = null;
-
     quantity = signal<number>(1);
 
     selectedFood = computed(() => {
@@ -30,26 +26,14 @@ export class FoodDetailsModalComponent {
         return this._computeData(selectedFood, this.quantity());
     })
 
-    constructor(private _naturalNutrientsService: NaturalNutrientsService, private _userService: UserService,
-        private _dialogRef: MatDialogRef<FoodDetailsModalComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: {foodData: FoodNutritionDetails}
+    constructor(private _dialogRef: MatDialogRef<FoodDetailsModalComponent>,
+        @Inject(MAT_DIALOG_DATA) public data: { foodData: FoodNutritionDetails }
     ) {
         this.quantity.set(this.data.foodData.serving_qty);
 
         this._dialogRef.backdropClick().subscribe(() => {
             this._dialogRef.close(this.selectedFood());
         });
-    }
-
-    ngOnInit() { }
-
-    confirm() {
-        this._dialogRef.close(true);
-    }
-
-    cancel() {
-        console.log("HELLO WORLD");
-        this._dialogRef.close(false);
     }
 
     increaseQuantity() {
@@ -63,10 +47,11 @@ export class FoodDetailsModalComponent {
     private _computeData(selectedFood: FoodNutritionDetails, quantity: number): FoodNutritionDetails {
         return {
             food_name: selectedFood.food_name,
+
             serving_unit: selectedFood.serving_unit,
             serving_qty: quantity,
-
             serving_weight_grams: this._roundToTwo(selectedFood.serving_weight_grams / selectedFood.serving_qty * quantity),
+            
             nf_calories: this._roundToTwo(selectedFood.nf_calories / selectedFood.serving_qty * quantity),
             nf_total_fat: this._roundToTwo(selectedFood.nf_total_fat / selectedFood.serving_qty * quantity),
             nf_cholesterol: this._roundToTwo(selectedFood.nf_cholesterol / selectedFood.serving_qty * quantity),

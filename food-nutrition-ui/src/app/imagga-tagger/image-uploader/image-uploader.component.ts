@@ -17,32 +17,31 @@ export class ImageUploaderComponent {
     @ViewChild('imageInput') imageInput!: ElementRef;
     imageSrc: Signal<string | ArrayBuffer | null>;
 
-    constructor(private _imaggaTagsService: ImaggaTagsService,
+    constructor(
+        private _imaggaTagsService: ImaggaTagsService,
         private _naturalNutrientsService: NaturalNutrientsService,
         private _dialogService: DialogService
     ) {
         this.imageSrc = this._imaggaTagsService.imageSrc.asReadonly();
     }
 
-    onFileSelected(event: Event): void {
+    onFileSelected(event: Event) {
         const file = (event.target as HTMLInputElement).files?.[0];
         if (file) {
             const reader = new FileReader();
             reader.onload = () => {
-                // this.imageSrc.set(reader.result);
-                this._imaggaTagsService.setImage(reader.result);
+                this._imaggaTagsService.imageSrc.set(reader.result);
                 this._naturalNutrientsService.foodItem.set(null);
-                // console.log(this._imaggaTagsService.imageSrc());
             };
             reader.readAsDataURL(file);
         }
     }
 
     async onDeletePhoto() {
-        const isConfirm = await lastValueFrom(this._dialogService.confirmationModal(`Do you want to delete this photo?`).afterClosed());
+        const modalRef = this._dialogService.confirmationModal(`Do you want to delete this photo?`).afterClosed();
+        const isConfirm = await lastValueFrom(modalRef);
 
         if (!isConfirm) return;
-        // this.imageSrc.set(null);
         this._imaggaTagsService.imageSrc.set(null);
         this._imaggaTagsService.imageTags.set(null);
         this._naturalNutrientsService.foodItem.set(null);

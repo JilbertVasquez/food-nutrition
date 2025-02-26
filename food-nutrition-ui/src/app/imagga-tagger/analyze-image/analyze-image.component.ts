@@ -2,9 +2,8 @@ import { Component, Signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { ImaggaTagsService } from '../../_services/imagga-tags.service';
 import { CommonModule } from '@angular/common';
-import { ImaggaResponse, ImaggaTag } from '../../dtos/imagga-response';
+import { ImaggaTag } from '../../dtos/imagga-response';
 import { excludeTags } from '../../_utils/constants';
-import { delay } from 'rxjs';
 
 @Component({
     selector: 'app-analyze-image',
@@ -14,7 +13,6 @@ import { delay } from 'rxjs';
 })
 export class AnalyzeImageComponent {
     imageSrc: Signal<string | ArrayBuffer | null>;
-    resultTags: ImaggaTag[] | null = null;
     isAnalyzing: Signal<boolean>;
 
     constructor(private _imaggaTagsService: ImaggaTagsService) {
@@ -31,27 +29,11 @@ export class AnalyzeImageComponent {
 
         this._imaggaTagsService.isAnalyzing.set(true);
         const imaggaResponse = await this._imaggaTagsService.getImaggaImageTags(base64Image);
-        // imaggaResponse.result.tags.forEach((tag: ImaggaTag) => {
-        //     console.log(tag.tag.en);
-        // });
-        // const top10Tags = imaggaResponse.result.tags.slice(0, 10);
         const top10Tags = imaggaResponse.result.tags
-            .filter(tag => !excludeTags.includes(tag.tag.en)) // Exclude general tags
-            .slice(0, 2);
+            .filter(tag => !excludeTags.includes(tag.tag.en))
+            .slice(0, 10);
+
         this._imaggaTagsService.imageTags.set(top10Tags);
-        // console.log("IMAGE TAGS");
-        // console.log(this._imaggaTagsService.imageTags());
-        // console.log(top10Tags);
-        // this.resultTags = top10Image;
-        // top10Image.forEach((tag: any) => {
-        //     console.log(tag.tag.en);
-        // });
-
-        // top10Image.forEach((tag: any) => {
-        //     console.log(tag);
-        //     console.log(tag["en"])
-        // });
-
     }
 }
 

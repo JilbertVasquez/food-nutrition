@@ -26,10 +26,6 @@ export class NaturalNutrientsService {
 
         const body = { query };
 
-        const url = `${this._nutritionixBaseUrl}`;
-
-        console.log("SEARCHING...");
-
-        return lastValueFrom(this.http.post<any>(url, body, { headers }));
+        return lastValueFrom(this.http.post<any>(this._nutritionixBaseUrl, body, { headers }));
     }
 }

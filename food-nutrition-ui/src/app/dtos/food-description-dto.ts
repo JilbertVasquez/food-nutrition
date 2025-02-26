@@ -1,16 +1,12 @@
-export interface Photo {
-    thumb: string;
-}
-
 export interface FoodNutritionDetails {
     food_name: string;
+
     serving_unit: string;
     serving_qty: number;
-
     serving_weight_grams: number;
+
     nf_calories: number;
     nf_total_fat: number;
-    // nf_saturated_fat: number;
     nf_cholesterol: number;
     nf_sodium: number;
     nf_total_carbohydrate: number;

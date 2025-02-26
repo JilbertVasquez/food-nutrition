@@ -1,5 +1,5 @@
 import { Component, computed, Signal } from '@angular/core';
-import { DonutChartComponent } from '../../donut-chart/donut-chart.component';
+import { DonutChartComponent } from '../../_shared/donut-chart/donut-chart.component';
 import { FoodNutritionDetails } from '../../dtos/food-description-dto';
 import { UserService } from '../../_services/user.service';
 import { USER_NUTRITION_CONSTANTS } from '../../_utils/constants';
@@ -65,7 +65,6 @@ export class UsersFoodChartComponent {
         if (!foodList || foodList.length === 0) return 0;
 
         const total = foodList.reduce((total, food) => total + food.nf_dietary_fiber, 0);
-        return Math.round(total * 100) / 100;
         return Math.round(total * 100) / 100;
     });
 
